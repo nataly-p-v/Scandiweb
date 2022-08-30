@@ -1,6 +1,17 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import { connect } from "react-redux";
+import { fetchProducts } from "../actions/productActions";
 
-export default class Products extends Component {
+class Products extends Component {
+ constructor(props) {
+    super(props);
+    this.state = {
+      product: null,
+    };
+  }
+  componentDidMount() {
+    this.props.fetchProducts();
+  }
     render(){
         return (
             <div>
@@ -21,3 +32,9 @@ export default class Products extends Component {
         )
     }
 }
+export default connect(
+  (state) => ({ products: state.products }),
+  {
+    fetchProducts,
+  }
+)(Products);

@@ -1,5 +1,9 @@
 import React from "react";
-import Products from './components/Products.js'
+import Products from './components/Products.js';
+import store from './store.js';
+import {Provider} from "react-redux";
+
+
 
 class App extends React.Component {
     constructor(){
@@ -12,21 +16,22 @@ class App extends React.Component {
     }
 render() {
   return (
+  <Provider>
     <div className="grid-container">
       <header>
       <div>
-        <ul class="category-list">
-          <li class="category-list__item"><a href="#" class="category-list__link category-list__link--selected">Men</a></li>
-          <li class="category-list__item"><a href="#" class="category-list__link">Women</a></li>
-          <li class="category-list__item"><a href="#" class="category-list__link">Kids</a></li>
+        <ul className="category-list">
+          <li className="category-list__item"><a href="#" className="category-list__link category-list__link--selected">Men</a></li>
+          <li className="category-list__item"><a href="#" className="category-list__link">Women</a></li>
+          <li className="category-list__item"><a href="#" className="category-list__link">Kids</a></li>
         </ul>
         </div>
-        <div class="logo"><img src="" alt="logo"/></div>
-        <div class="header-cart">
-            <div class="currency">
+        <div className="logo"><img src="" alt="logo"/></div>
+        <div className="header-cart">
+            <div className="currency">
                     $
              </div>
-             <div class="cart-icon">1</div>
+             <div className="cart-icon">1</div>
         </div>
       </header>
       <main>
@@ -36,6 +41,7 @@ render() {
         </div>
       </main>
     </div>
+    </Provider>
   );
 }
 }
