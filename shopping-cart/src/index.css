@@ -135,6 +135,7 @@ a:hover {
  flex-grow: 1;
   width: 33%;
   height: 42rem;
+  position:relative;
 }
 .product {
   /*display: flex;
@@ -144,9 +145,31 @@ a:hover {
   border:1px solid black;
   overflow :hidden;
 }
+.outStock {
+    position: absolute;
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+}
 .product a{
     display:block;
     height: 100%;
+}
+.product-button {
+    position:absolute;
+    z-index:1;
+    bottom:0;
+    right:0;
+    width:5rem;
+    height:5rem;
+    border-radius:50%;
+    background-color:#5ECE7B;
+     background-image: url("../public/images/cart-white.svg");
+     background-repeat:no-repeat;
+     background-position:50% 50%;
+    outline:none;
+    border:none;
+
 }
 .product img {
   max-width: 37rem;
@@ -292,20 +315,8 @@ input {
   text-align: right;
   padding: 0;
 }
-.success-message {
-  color: green;
-}
 /* Orders */
 .orders {
   width: 100%;
   padding: 10px;
-}
-tbody > tr:nth-child(odd) {
-  background-color: #f0f0f0;
-}
-td {
-  padding: 5px;
-}
-th {
-  text-align: left;
 }

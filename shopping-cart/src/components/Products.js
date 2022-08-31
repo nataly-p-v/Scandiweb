@@ -17,10 +17,12 @@ class Products extends Component {
                          <ul className="products">
                            {this.props.products.map((product) => (
                              <li key={product.id}>
+                             {!product.inStock && <div className="outStock">Out of stock</div>}
+
                                <div className="product">
                                  <a
                                    href={"#" + product.id}
-                                   onClick={() => {console.log('"#" + product.id')}}
+                                   onClick={() => {console.log("#" + product.id)}}
                                  >
 
                                    <img src={product.gallery[0]} alt={product.id}></img>
@@ -32,6 +34,11 @@ class Products extends Component {
 
                                     </div>
                                  </a>
+                                 <button
+                                  onClick={() => console.log('click')}
+                                  className="product-button"
+                                >
+                                </button>
                                </div>
                              </li>
                            ))}
