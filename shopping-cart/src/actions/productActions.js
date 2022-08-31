@@ -1,4 +1,4 @@
-import { FETCH_CURRENCIES } from "../types";
+//import { FETCH_CURRENCIES } from "../types";
 
 var query = `query { currencies{ label } }`;
 
@@ -15,7 +15,7 @@ export const fetchCurrencies = async function getCurrencies(dispatch) {
       })
     })
     let currencies = await results.json();
-//    console.log(currencies.data)
+    console.log(currencies.data)
 //    dispatch({
 //        type: FETCH_CURRENCIES,
 //        payload: currencies.data,

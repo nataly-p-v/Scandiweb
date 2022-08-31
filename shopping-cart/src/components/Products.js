@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-import { connect } from "react-redux";
+//import { connect } from "react-redux";
 
 class Products extends Component {
- constructor(props) {
-    super(props);
-  }
   componentDidMount() {
-    console.log( console.log(this.props.products))
+
   }
     render(){
         return (
@@ -35,7 +32,7 @@ class Products extends Component {
                                     </div>
                                  </a>
                                  <button
-                                  onClick={() => console.log('click')}
+                                 onClick={() => this.props.addToCart(product)}
                                   className="product-button"
                                 >
                                 </button>
