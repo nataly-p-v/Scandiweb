@@ -1,11 +1,23 @@
-import { FETCH_PRODUCTS } from "../types";
+import { FETCH_CURRENCIES } from "../types";
 
-export const fetchProducts = () => async (dispatch) => {
-  const res = await fetch("localhost:4000");
-  const data = await res.json();
-  console.log(data);
-  dispatch({
-    type: FETCH_PRODUCTS,
-    payload: data,
-  });
-};
+var query = `query { currencies{ label } }`;
+
+export const fetchCurrencies = async function getCurrencies(dispatch) {
+    let results = await fetch('http://localhost:4000/graphql', {
+      method: 'POST',
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+    body: JSON.stringify({
+        query
+      })
+    })
+    let currencies = await results.json();
+    console.log(currencies.data)
+//    dispatch({
+//        type: FETCH_CURRENCIES,
+//        payload: currencies.data,
+//      });
+  }

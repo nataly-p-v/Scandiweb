@@ -1,21 +1,23 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
-import { fetchProducts } from "../actions/productActions";
+import { fetchCurrencies } from "../actions/productActions";
 
 class Products extends Component {
  constructor(props) {
     super(props);
     this.state = {
-      product: null,
+      currency: null,
     };
   }
   componentDidMount() {
-    this.props.fetchProducts();
+    fetchCurrencies();
   }
     render(){
+     const { currency } = this.state;
         return (
             <div>
-                <ul class="products">
+                <ul className="products">
+
                  {/*this.props.products.map(product => (){
                     <li key={product.id}>
                     <div className="product">
@@ -32,9 +34,10 @@ class Products extends Component {
         )
     }
 }
-export default connect(
-  (state) => ({ products: state.products }),
-  {
-    fetchProducts,
-  }
-)(Products);
+//export default connect(
+//  (state) => ({ currency: state.currency }),
+//  {
+//    fetchCurrencies,
+//  }
+//)(Products);
+export default connect()(Products);

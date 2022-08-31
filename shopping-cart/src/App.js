@@ -16,7 +16,7 @@ class App extends React.Component {
     }
 render() {
   return (
-  <Provider>
+  <Provider store={store}>
     <div className="grid-container">
       <header>
       <div>
