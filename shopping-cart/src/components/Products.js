@@ -1,43 +1,44 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
-import { fetchCurrencies } from "../actions/productActions";
 
 class Products extends Component {
  constructor(props) {
     super(props);
-    this.state = {
-      currency: null,
-    };
   }
   componentDidMount() {
-    fetchCurrencies();
+    console.log( console.log(this.props.products))
   }
     render(){
-     const { currency } = this.state;
         return (
             <div>
-                <ul className="products">
+                     {!this.props.products ? (
+                         <div>Loading...</div>
+                       ) : (
+                         <ul className="products">
+                           {this.props.products.map((product) => (
+                             <li key={product.id}>
+                               <div className="product">
+                                 <a
+                                   href={"#" + product.id}
+                                   onClick={() => {console.log('"#" + product.id')}}
+                                 >
 
-                 {/*this.props.products.map(product => (){
-                    <li key={product.id}>
-                    <div className="product">
-                        <a href={"#"+product.id}><img src={product.image} alt="product"/></a>
-                        <p>{product.description}</p>
-                        <div className="product-price">{product.price}</div>
-                        <div className="product-currency">{product.currency}</div>
-                    </div>
-                    <button>add to cart</button>
-                    </li>
-                 })*/}
-                </ul>
+                                   <img src={product.gallery[0]} alt={product.id}></img>
+                                    <div
+                                     dangerouslySetInnerHTML={{__html: product.description}}
+                                   />
+                                    <div className="product-price">
+                                     {product.prices[0].amount}
+
+                                    </div>
+                                 </a>
+                               </div>
+                             </li>
+                           ))}
+                         </ul>
+                       )}
             </div>
         )
     }
 }
-//export default connect(
-//  (state) => ({ currency: state.currency }),
-//  {
-//    fetchCurrencies,
-//  }
-//)(Products);
-export default connect()(Products);
+export default Products;

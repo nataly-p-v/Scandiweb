@@ -15,7 +15,7 @@ export const fetchCurrencies = async function getCurrencies(dispatch) {
       })
     })
     let currencies = await results.json();
-    console.log(currencies.data)
+//    console.log(currencies.data)
 //    dispatch({
 //        type: FETCH_CURRENCIES,
 //        payload: currencies.data,
