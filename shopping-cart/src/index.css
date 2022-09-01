@@ -230,15 +230,7 @@ a:hover {
   border-bottom: 0.1rem #c0c0c0 solid;
 }
 .cart-items {
-    position:absolute;
-    top:0;
-    right:0;
-    z-index:3;
-    background:white;
-  padding: 0;
-  width: 500px;
-  height:500px;
-  list-style-type: none;
+
 }
 .cart-items img {
   width: 5rem;

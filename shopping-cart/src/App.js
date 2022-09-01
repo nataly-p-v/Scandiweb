@@ -1,5 +1,6 @@
 import React from "react";
 import Products from './components/Products.js';
+import CartHeader from './components/CartHeader.js';
 import Cart from './components/Cart.js';
 import store from './store.js';
 import {Provider} from "react-redux";
@@ -36,6 +37,9 @@ class App extends React.Component {
             console.log(cartItems)
             }
             removeFromCart= (product) => {
+                const cartItems = this.state.cartItems.slice();
+                console.log(product)
+                this.setState({cartItems:cartItems.filter(x=>x.id !==product.id)})
 
             }
 render() {
@@ -55,10 +59,11 @@ render() {
             <div className="currency">
                 <Dropdown options={this.state.options} onChange={this._onSelect} value={this.state.defaultOption} placeholder="Select an option" />
              </div>
-             <div className="cart-icon"><img src="images/empty_cart.svg" alt="logo"/><Cart cartItems={this.state.cartItems}/></div>
+             <div className="cart-icon"><img src="images/empty_cart.svg" alt="logo"/><CartHeader cartItems={this.state.cartItems}/></div>
         </div>
       </header>
       <main>
+      <Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart}/>
         <div className="content">
             <div className="main"><Products products={this.state.products} addToCart={this.addToCart}/></div>
         </div>

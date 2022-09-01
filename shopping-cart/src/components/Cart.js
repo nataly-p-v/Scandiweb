@@ -6,20 +6,21 @@ class Cart extends Component {
     console.log(cartItems)
         return (
         <div>
-            <div className="cart-count">
-                   {cartItems.length ===0?<div className="cart-count__number">0</div>:
-                    <div className="cart-count__number">{cartItems.length}</div>
-                   }
-            </div>
             <div className="cart">
                 <div className="cart-items">
-                     {cartItems.map((item, i) => (
+                     {cartItems.length>0 ? cartItems.map((item, i) => (
                         <li key={item.id}>
                             <div>{item.name}</div>
-                            <button onClick={() => this.props.removeFromCart()}>remove</button>
+                            <div>{item.prices[0].amount}</div>
+                            <div>{item.count}</div>
+                            <div>{item.prices[0].amount*item.count}</div>
+                            <button onClick={() => this.props.removeFromCart(item)}>remove</button>
                         </li>
-                     ))}
+                     ))
+                     : ''
+                     }
                 </div>
+                <div>total: {/*cartItems.reduce((a,c)=> a+(c.price[c].amount*c.count),0)*/}</div>
             </div>
         </div>
         )
