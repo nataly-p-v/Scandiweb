@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class Cart extends Component {
     render(){
     const {cartItems} = this.props;
-    console.log(cartItems)
+    console.log(this.props)
         return (
         <div>
             <div className="cart">
@@ -17,7 +17,7 @@ class Cart extends Component {
                             <button onClick={() => this.props.removeFromCart(item)}>remove</button>
                         </li>
                      ))
-                     : ''
+                     : 'empty cart'
                      }
                 </div>
                 <div>total: {/*cartItems.reduce((a,c)=> a+(c.price[c].amount*c.count),0)*/}</div>

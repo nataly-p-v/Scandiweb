@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 //import { connect } from "react-redux";
+import { Link} from "react-router-dom";
 
 class Products extends Component {
   componentDidMount() {
 
   }
+
     render(){
         return (
             <div>
@@ -17,11 +19,10 @@ class Products extends Component {
                              {!product.inStock && <div className="outStock">Out of stock</div>}
 
                                <div className="product">
-                                 <a
-                                   href={"#" + product.id}
-                                   onClick={() => {console.log("#" + product.id)}}
-                                 >
 
+                                 <Link
+                                   to={'product/' + product.id}
+                                 >
                                    <img src={product.gallery[0]} alt={product.id}></img>
                                     <div
                                      dangerouslySetInnerHTML={{__html: product.description}}
@@ -30,7 +31,8 @@ class Products extends Component {
                                      {product.prices[0].amount}
 
                                     </div>
-                                 </a>
+                                 </Link>
+
                                  <button
                                  onClick={() => this.props.addToCart(product)}
                                   className="product-button"
