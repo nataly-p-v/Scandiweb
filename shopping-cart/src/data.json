@@ -2,6 +2,7 @@
   "data": {
     "categories": [
       {
+        "name": "all",
         "products": [
           {
             "id": "huarache-x-stussy-le",
@@ -455,6 +456,7 @@
         ]
       },
       {
+        "name": "clothes",
         "products": [
           {
             "id": "huarache-x-stussy-le",
@@ -575,6 +577,7 @@
         ]
       },
       {
+        "name": "tech",
         "products": [
           {
             "id": "ps-5",

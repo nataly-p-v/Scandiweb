@@ -4,7 +4,6 @@ import { Link} from "react-router-dom";
 class CartHeader extends Component {
     render(){
     const {cartItems} = this.props;
-    console.log(cartItems)
         return (
         <div>
          <Link to={'cart/'}>

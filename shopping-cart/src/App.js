@@ -7,8 +7,10 @@ import store from './store.js';
 import {Provider} from "react-redux";
 import data from './data.json';
 import product from './product.json';
-import { BrowserRouter, Routes, Route, Link} from "react-router-dom";
-
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+import GetCurrencies from "./components/getCurrencies";
+import GetProducts from "./components/getProducts";
+import GetCategories from "./components/getCategories";
 
 class App extends React.Component {
     constructor(){
@@ -36,7 +38,6 @@ class App extends React.Component {
                 cartItems.push({...product, count:1})
             }
             this.setState({cartItems})
-            console.log(cartItems)
             }
             removeFromCart= (product) => {
                 const cartItems = this.state.cartItems.slice();
@@ -48,6 +49,9 @@ render() {
   return (
   <Provider store={store}>
    <BrowserRouter>
+   <GetCurrencies/>
+   <GetProducts/>
+   <GetCategories/>
     <div className="grid-container">
     <Header options={this.state.options} value={this.state.defaultOption} cartItems={this.state.cartItems}/>
       <main>
