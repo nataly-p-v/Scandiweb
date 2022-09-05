@@ -8,19 +8,13 @@ import {Provider} from "react-redux";
 import data from './data.json';
 import product from './product.json';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
-import GetCurrencies from "./components/getCurrencies";
 import GetProducts from "./components/getProducts";
-import GetCategories from "./components/getCategories";
 
 class App extends React.Component {
     constructor(){
         super();
         this.state = {
             products: data.data.categories[0].products,
-            options:[
-              '$ USD', '€ EUR', '¥ JPY'
-            ],
-            defaultOption: '$',
             cartItems: [],
             product: product.data.product
         }
@@ -49,11 +43,9 @@ render() {
   return (
   <Provider store={store}>
    <BrowserRouter>
-   <GetCurrencies/>
    <GetProducts/>
-   <GetCategories/>
     <div className="grid-container">
-    <Header options={this.state.options} value={this.state.defaultOption} cartItems={this.state.cartItems}/>
+    <Header cartItems={this.state.cartItems}/>
       <main>
         <div className="content">
             <div className="main">
