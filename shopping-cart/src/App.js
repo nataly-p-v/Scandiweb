@@ -1,12 +1,12 @@
 import React from "react";
+import Header from './components/Header.js';
 import Products from './components/Products.js';
-import CartHeader from './components/CartHeader.js';
+import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import store from './store.js';
 import {Provider} from "react-redux";
 import data from './data.json';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
+import { BrowserRouter, Routes, Route, Link} from "react-router-dom";
 
 
 class App extends React.Component {
@@ -45,30 +45,22 @@ class App extends React.Component {
 render() {
   return (
   <Provider store={store}>
+   <BrowserRouter>
     <div className="grid-container">
-      <header>
-      <div>
-        <ul className="category-list">
-          <li className="category-list__item"><a href="#" className="category-list__link category-list__link--selected">Men</a></li>
-          <li className="category-list__item"><a href="#" className="category-list__link">Women</a></li>
-          <li className="category-list__item"><a href="#" className="category-list__link">Kids</a></li>
-        </ul>
-        </div>
-        <div className="logo"><img src="images/logo.svg" alt="logo"/></div>
-        <div className="header-cart">
-            <div className="currency">
-                <Dropdown options={this.state.options} onChange={this._onSelect} value={this.state.defaultOption} placeholder="Select an option" />
-             </div>
-             <div className="cart-icon"><img src="images/empty_cart.svg" alt="logo"/><CartHeader cartItems={this.state.cartItems}/></div>
-        </div>
-      </header>
+    <Header options={this.state.options} value={this.state.defaultOption} cartItems={this.state.cartItems}/>
       <main>
-      <Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart}/>
         <div className="content">
-            <div className="main"><Products products={this.state.products} addToCart={this.addToCart}/></div>
+            <div className="main">
+               <Routes>
+                <Route path="/cart" element={<Cart cartItems={this.state.cartItems} removeFromCart={this.state.removeFromCart}/>}></Route>
+                <Route path="product/:id" element={<Product animate={true}/>}></Route>
+                <Route path="/" element={<Products products={this.state.products} addToCart={this.addToCart}/>}></Route>
+               </Routes>
+            </div>
         </div>
       </main>
     </div>
+     </BrowserRouter>
     </Provider>
   );
 }
