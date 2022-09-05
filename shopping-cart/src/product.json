@@ -1,0 +1,60 @@
+{
+  "data": {
+    "product": {
+      "id": "huarache-x-stussy-le",
+      "name": "Nike Air Huarache Le",
+      "inStock": true,
+      "gallery": [
+        "https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_2_720x.jpg?v=1612816087",
+        "https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_1_720x.jpg?v=1612816087",
+        "https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_3_720x.jpg?v=1612816087",
+        "https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_5_720x.jpg?v=1612816087",
+        "https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_4_720x.jpg?v=1612816087"
+      ],
+      "description": "<p>Great sneakers for everyday use!</p>",
+      "category": "clothes",
+      "attributes": [
+        {
+          "name": "Size"
+        }
+      ],
+      "prices": [
+        {
+          "amount": 144.69,
+          "currency": {
+            "symbol": "$",
+            "label": "USD"
+          }
+        },
+        {
+          "amount": 104,
+          "currency": {
+            "symbol": "£",
+            "label": "GBP"
+          }
+        },
+        {
+          "amount": 186.65,
+          "currency": {
+            "symbol": "A$",
+            "label": "AUD"
+          }
+        },
+        {
+          "amount": 15625.24,
+          "currency": {
+            "symbol": "¥",
+            "label": "JPY"
+          }
+        },
+        {
+          "amount": 10941.76,
+          "currency": {
+            "symbol": "₽",
+            "label": "RUB"
+          }
+        }
+      ]
+    }
+  }
+}

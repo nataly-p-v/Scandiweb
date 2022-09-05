@@ -6,6 +6,7 @@ import Cart from './components/Cart.js';
 import store from './store.js';
 import {Provider} from "react-redux";
 import data from './data.json';
+import product from './product.json';
 import { BrowserRouter, Routes, Route, Link} from "react-router-dom";
 
 
@@ -18,7 +19,8 @@ class App extends React.Component {
               '$ USD', '€ EUR', '¥ JPY'
             ],
             defaultOption: '$',
-            cartItems: []
+            cartItems: [],
+            product: product.data.product
         }
     }
             addToCart = (product) => {
@@ -53,7 +55,7 @@ render() {
             <div className="main">
                <Routes>
                 <Route path="/cart" element={<Cart cartItems={this.state.cartItems} removeFromCart={this.state.removeFromCart}/>}></Route>
-                <Route path="product/:id" element={<Product animate={true}/>}></Route>
+                <Route path="/product/:id" element={<Product product={this.state.product} />} />
                 <Route path="/" element={<Products products={this.state.products} addToCart={this.addToCart}/>}></Route>
                </Routes>
             </div>
