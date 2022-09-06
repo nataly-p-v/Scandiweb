@@ -15,9 +15,7 @@ class Header extends Component {
                 </div>
                 <div className="logo"> <Link to="/"><img src="images/logo.svg" alt="logo"/></Link></div>
                 <div className="header-cart">
-                    <div className="currency">
-                      <GetCurrencies/>
-                     </div>
+                    <GetCurrencies/>
                      <div className="cart-icon"><img src="images/empty_cart.svg" alt="logo"/><CartHeader cartItems={this.props.cartItems}/></div>
                 </div>
               </header>

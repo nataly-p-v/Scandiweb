@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { LOAD_CURRENCIES } from '../GraphQL/queries.js'
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 function GetCurrencies() {
   const { error, loading, data } = useQuery(LOAD_CURRENCIES);
@@ -12,16 +14,14 @@ function GetCurrencies() {
     }
   }, [data]);
 
-  const result = currencies.map((obj) => {
-        return <p key={obj.id}>
+ /* const result = currencies.map((obj,i) => {
+        return <li key={obj.symbol} className="currencies__item">
            {obj.label}{obj.symbol}
-        </p>;
-     });
+        </li>;
+     });*/
 
   return (
-    <div>
-      {result}
-    </div>
+  <Dropdown className="currency" options={currencies} value={currencies[0]} placeholder="Select an option" />
   );
 }
 

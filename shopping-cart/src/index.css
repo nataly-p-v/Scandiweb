@@ -109,7 +109,7 @@ a:hover {
     -webkit-transform: rotate(45deg);
 }
 
-.currency .Dropdown-root.is-open .Dropdown-arrow {
+.currency.is-open .Dropdown-arrow {
     border:none;
       border: solid black;
       border-width: 0 0.1rem 0.1rem 0;
