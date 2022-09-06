@@ -3,20 +3,23 @@ import Header from './components/Header.js';
 import Products from './components/Products.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
+import Category from './components/Category.js';
 import store from './store.js';
 import {Provider} from "react-redux";
 import data from './data.json';
 import product from './product.json';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import GetProducts from "./components/getProducts";
+import GetCategories from "./components/getCategories";
 
 class App extends React.Component {
     constructor(){
         super();
         this.state = {
             products: data.data.categories[0].products,
+            categories: data.data.categories,
             cartItems: [],
-            product: product.data.product
+            product: product.data.product,
         }
     }
             addToCart = (product) => {
@@ -43,7 +46,6 @@ render() {
   return (
   <Provider store={store}>
    <BrowserRouter>
-   <GetProducts/>
     <div className="grid-container">
     <Header cartItems={this.state.cartItems}/>
       <main>
@@ -51,8 +53,10 @@ render() {
             <div className="main">
                <Routes>
                 <Route path="/cart" element={<Cart cartItems={this.state.cartItems} removeFromCart={this.state.removeFromCart}/>}></Route>
+                 <Route path="/category/:id" element={<Category category={this.state.category} />} />
                 <Route path="/product/:id" element={<Product product={this.state.product} />} />
-                <Route path="/" element={<Products products={this.state.products} addToCart={this.addToCart}/>}></Route>
+                 <Route path="/" element={<Products products={this.state.products} addToCart={this.addToCart}/>}></Route>
+
                </Routes>
             </div>
         </div>

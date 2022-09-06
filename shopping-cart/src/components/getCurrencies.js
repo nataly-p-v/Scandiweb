@@ -9,7 +9,6 @@ function GetCurrencies() {
   const [currencies, setCurrencies] = useState([]);
  useEffect(() => {
     if (data) {
-     console.log(data.currencies)
      setCurrencies(data.currencies)
     }
   }, [data]);

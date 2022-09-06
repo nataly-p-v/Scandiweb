@@ -5,6 +5,7 @@ export default function Product(props) {
     let { id } = useParams(); // Unpacking and retrieve id
     /*let index = props.product.findIndex(e => e.id === parseInt(id));*/
     let product = props.product;
+    console.log(id)
     return (
         <div>
             <p>Product: {product.id}</p>

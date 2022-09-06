@@ -8,7 +8,6 @@ function GetCategories() {
   const [categories, setCategories] = useState([]);
  useEffect(() => {
     if (data) {
-      console.log(data)
       setCategories(data.categories)
     }
   }, [data]);
