@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { LOAD_PRODUCTS } from '../GraphQL/queries.js';
 
-function GetProducts({onSelect,categoryName}) {
+function GetProducts({onClick, onSelect, categoryName, isVisible}) {
    const [products, setProducts] = useState([]);
    const { data } = useQuery(LOAD_PRODUCTS, {
     variables: { category: categoryName },
@@ -17,7 +17,6 @@ function GetProducts({onSelect,categoryName}) {
 
   return (
     <div>
-        <ul className="products-list">
             <ul>
                 {products.map(product => (
                     <li key={product.name} className="products-list__item">
@@ -25,7 +24,6 @@ function GetProducts({onSelect,categoryName}) {
                             <button onClick={() => onSelect(product)}>select</button></li>
                 ))}
             </ul>
-        </ul>
     </div>
   );
 }

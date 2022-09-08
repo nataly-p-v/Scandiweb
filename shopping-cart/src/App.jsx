@@ -16,7 +16,7 @@ function App () {
                   <main>
                     <div className="content">
                         <div className="main">
-                            <GetProducts categoryName={selectedCategoryName} onSelect={product => setSelectedProductId(product.id)}/>
+                            <GetProducts categoryName={selectedCategoryName} onSelect={(product) => setSelectedProductId(product.id)}/>
                             {selectedProductId && (
                                 <div>
                                     <Product id={selectedProductId} />
