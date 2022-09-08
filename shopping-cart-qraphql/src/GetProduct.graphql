@@ -1,6 +1,6 @@
 query GetProduct($id: String!) {
-	getBook(id: $id) {
-id
+	getProduct(id: $id) {
+      id
       name
       inStock
       gallery
