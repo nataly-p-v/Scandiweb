@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { LOAD_ALL_PRODUCTS } from '../GraphQL/queries.js';
+import { LOAD_TECH_PRODUCTS } from '../GraphQL/queries.js';
+import { LOAD_CLOTHES_PRODUCTS } from '../GraphQL/queries.js';
 
-function GetProducts({onSelect}) {
+function GetProducts({onSelect,categoryName}) {
    const [products, setProducts] = useState([]);
     const { data } = useQuery(LOAD_ALL_PRODUCTS);
 
