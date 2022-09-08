@@ -15,111 +15,33 @@ export const LOAD_CATEGORIES = gql `
         }
     }
 `;
-export const LOAD_TECH_PRODUCTS = gql `
-    query {
-      category(input: {title: "tech"}) {
+export const LOAD_PRODUCTS = gql `
+query LOAD_PRODUCTS ($category: String!){
+category(input: { title: $category }) {
         name
         products{
-                        id
-                        name
-                        inStock
-                        gallery
-                        description
-                        category
-                        attributes{
-                          name
-                        }
-                        prices{
-                          amount
-                          currency{
-                            symbol
-                            label
-                          }
-                        }
-                        brand
-        }
-      }
-    }
-`;
-export const LOAD_ALL_PRODUCTS = gql `
-    query {
-      category(input: {title: "all"}) {
-        name
-        products{
-                        id
-                        name
-                        inStock
-                        gallery
-                        description
-                        category
-                        attributes{
-                          name
-                        }
-                        prices{
-                          amount
-                          currency{
-                            symbol
-                            label
-                          }
-                        }
-                        brand
-        }
-      }
-    }
-`;
-export const LOAD_CLOTHES_PRODUCTS = gql `
-    query {
-      category(input: {title: "clothes"}) {
-        name
-        products{
-                        id
-                        name
-                        inStock
-                        gallery
-                        description
-                        category
-                        attributes{
-                          name
-                        }
-                        prices{
-                          amount
-                          currency{
-                            symbol
-                            label
-                          }
-                        }
-                        brand
-        }
-      }
-    }
-`;
-export const LOAD_PRODUCTS = gql`
-    query {
-        categories{
+            id
             name
-            products{
-              id
+            inStock
+            gallery
+            description
+            category
+            attributes{
               name
-              inStock
-              gallery
-              description
-              category
-              attributes{
-                name
-              }
-              prices{
-                amount
-                currency{
-                  symbol
-                  label
-                }
-              }
-              brand
             }
+            prices{
+              amount
+              currency{
+                symbol
+                label
+              }
+            }
+            brand
         }
-    }
-
+}
+}
 `;
+
 export const LOAD_PRODUCT = gql`
 query product($id : String!) {
          product(id: $id){
