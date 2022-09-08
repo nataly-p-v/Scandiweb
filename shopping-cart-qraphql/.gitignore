@@ -24,3 +24,5 @@ yarn-error.log*
 /.idea/runConfigurations.xml
 /.idea/vcs.xml
 /.idea/shopping-cart-qraphql.iml
+/.cache/90/46195a9a469f8530a767e84a859471.json
+/dist/index.html
