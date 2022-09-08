@@ -15,6 +15,36 @@ export const LOAD_CATEGORIES = gql `
         }
     }
 `;
+export const LOAD_TECH_PRODUCTS = gql `
+    query {
+      category(input: {title: "tech"}) {
+        name
+        products{
+          id
+        }
+      }
+    }
+`;
+export const LOAD_ALL_PRODUCTS = gql `
+    query {
+      category(input: {title: "all"}) {
+        name
+        products{
+          id
+        }
+      }
+    }
+`;
+export const LOAD_CLOTHES_PRODUCTS = gql `
+    query {
+      category(input: {title: "clothes"}) {
+        name
+        products{
+          id
+        }
+      }
+    }
+`;
 export const LOAD_PRODUCTS = gql`
     query {
         categories{
