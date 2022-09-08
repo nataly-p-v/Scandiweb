@@ -20,7 +20,23 @@ export const LOAD_TECH_PRODUCTS = gql `
       category(input: {title: "tech"}) {
         name
         products{
-          id
+                        id
+                        name
+                        inStock
+                        gallery
+                        description
+                        category
+                        attributes{
+                          name
+                        }
+                        prices{
+                          amount
+                          currency{
+                            symbol
+                            label
+                          }
+                        }
+                        brand
         }
       }
     }
@@ -30,7 +46,23 @@ export const LOAD_ALL_PRODUCTS = gql `
       category(input: {title: "all"}) {
         name
         products{
-          id
+                        id
+                        name
+                        inStock
+                        gallery
+                        description
+                        category
+                        attributes{
+                          name
+                        }
+                        prices{
+                          amount
+                          currency{
+                            symbol
+                            label
+                          }
+                        }
+                        brand
         }
       }
     }
@@ -40,7 +72,23 @@ export const LOAD_CLOTHES_PRODUCTS = gql `
       category(input: {title: "clothes"}) {
         name
         products{
-          id
+                        id
+                        name
+                        inStock
+                        gallery
+                        description
+                        category
+                        attributes{
+                          name
+                        }
+                        prices{
+                          amount
+                          currency{
+                            symbol
+                            label
+                          }
+                        }
+                        brand
         }
       }
     }

@@ -1,10 +1,9 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
 import * as GetAllProducts from './GetAllProducts.graphql';
+import { useQuery } from "@apollo/client";
 
-export default ({ onSelect }) => {
+function AllProducts ({ onSelect }) {
 	const { data, loading } = useQuery(GetAllProducts);
-
 	return (
 		<div>
 			<h1>GetAllProducts</h1>
@@ -24,3 +23,4 @@ export default ({ onSelect }) => {
 		</div>
 	);
 };
+export default AllProducts;
