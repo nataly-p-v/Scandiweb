@@ -1,0 +1,20 @@
+query GetProduct($id: String!) {
+	getBook(id: $id) {
+id
+      name
+      inStock
+      gallery
+      description
+      category
+      attributes {
+        name
+      }
+      prices {
+        amount
+        currency{
+          symbol
+          label
+        }
+      }
+	}
+}
