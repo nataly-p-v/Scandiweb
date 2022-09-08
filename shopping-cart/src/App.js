@@ -4,13 +4,9 @@ import Products from './components/Products.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Category from './components/Category.js';
-import store from './store.js';
-import {Provider} from "react-redux";
 import data from './data.json';
 import product from './product.json';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
-import GetProducts from "./components/getProducts";
-import GetCategories from "./components/getCategories";
 
 class App extends React.Component {
     constructor(){
@@ -44,7 +40,6 @@ class App extends React.Component {
             }
 render() {
   return (
-  <Provider store={store}>
    <BrowserRouter>
     <div className="grid-container">
     <Header cartItems={this.state.cartItems}/>
@@ -63,7 +58,6 @@ render() {
       </main>
     </div>
      </BrowserRouter>
-    </Provider>
   );
 }
 }

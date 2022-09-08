@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-//import { connect } from "react-redux";
 import { Link} from "react-router-dom";
 
 class Products extends Component {
     render(){
+    console.log(this.props.products)
         return (
             <div>
                      {!this.props.products ? (

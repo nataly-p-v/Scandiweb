@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { LOAD_CURRENCIES } from '../GraphQL/queries.js'
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 
 function GetCurrencies() {
-  const { error, loading, data } = useQuery(LOAD_CURRENCIES);
+  const { data } = useQuery(LOAD_CURRENCIES);
   const [currencies, setCurrencies] = useState([]);
  useEffect(() => {
     if (data) {

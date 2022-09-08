@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery} from "@apollo/client";
 import { LOAD_CATEGORIES } from '../GraphQL/queries.js';
 import { Link} from "react-router-dom";
 
 function GetCategories() {
-  const { error, loading, data } = useQuery(LOAD_CATEGORIES);
+  const { data } = useQuery(LOAD_CATEGORIES);
   const [categories, setCategories] = useState([]);
  useEffect(() => {
     if (data) {
