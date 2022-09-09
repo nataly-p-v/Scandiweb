@@ -1,24 +1,25 @@
 import React, {Component} from 'react';
 import 'react-dropdown/style.css';
 import CartHeader from '../components/CartHeader.js';
-import { Link } from "react-router-dom";
 import GetCurrencies from "../components/getCurrencies";
 import GetCategories from "../components/getCategories";
+import logo from '../logo.svg';
 
-class Header extends Component {
-    render(){
+function Header({onSelectCategory}) {
         return (
               <header>
               <div>
-                 <GetCategories/>
+                 <GetCategories onSelectCategory={onSelectCategory}/>
                 </div>
-                <div className="logo"> <Link to="/"><img src="images/logo.svg" alt="logo"/></Link></div>
+                <div className="logo">
+                    <img src={logo} alt="Logo" />
+                </div>
                 <div className="header-cart">
                     <GetCurrencies/>
-                     <div className="cart-icon"><img src="images/empty_cart.svg" alt="logo"/><CartHeader cartItems={this.props.cartItems}/></div>
+                     <div className="cart-icon"><img src="images/empty_cart.svg" alt="logo"/></div>
                 </div>
               </header>
         )
-    }
 }
+
 export default Header;

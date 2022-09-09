@@ -14,14 +14,11 @@ function GetCategories({onSelectCategory}) {
   return (
     <div>
         <ul className="category-list">
-            <ul>
                 {categories.map(category => (
-                    <li key={category.name} className="products-list__item">
-                             {category.name}
-                            <button
-                            onClick={() => onSelectCategory(category)}>select</button></li>
+                    <li key={category.name} className="category-list__item" onClick={() => onSelectCategory(category)}>
+                             <span className="category-list__link">{category.name}</span>
+                            </li>
                 ))}
-            </ul>
         </ul>
     </div>
   );

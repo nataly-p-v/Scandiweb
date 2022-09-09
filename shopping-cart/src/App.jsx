@@ -3,20 +3,22 @@ import GetProducts from './components/getProducts';
 import GetCategories from './components/getCategories';
 import Product from './components/Product';
 import Category from './components/Category';
+import Header from './components/Header';
 
 function App () {
 	const [selectedProductId, setSelectedProductId] = useState();
 	const [selectedCategoryName, setSelectedCategoryName] = useState();
   return (
     <div className="grid-container">
-    <header > <GetCategories onSelectCategory={category => setSelectedCategoryName(category.name)}/> </header>
+    <Header onSelectCategory={category => setSelectedCategoryName(category.name)}/>
+
      {selectedCategoryName && (
         <div>
             <Category name={selectedCategoryName} />
                   <main>
                     <div className="content">
                         <div className="main">
-                        <div className={`getProducts ${selectedProductId ? "hidden" : "visible"}`}>
+                        <div className={`${selectedProductId ? "hidden" : "visible"}`}>
                             <GetProducts categoryName={selectedCategoryName} onSelect={(product) => setSelectedProductId(product.id)}/>
                             </div>
                             {selectedProductId && (
