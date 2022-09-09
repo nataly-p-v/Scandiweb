@@ -13,23 +13,20 @@ function App () {
     <Header onSelectCategory={category => setSelectedCategoryName(category.name)}/>
 
      {selectedCategoryName && (
-        <div>
-            <Category name={selectedCategoryName} />
-                  <main>
-                    <div className="content">
-                        <div className="main">
-                        <div className={`${selectedProductId ? "hidden" : "visible"}`}>
-                            <GetProducts categoryName={selectedCategoryName} onSelect={(product) => setSelectedProductId(product.id)}/>
-                            </div>
-                            {selectedProductId && (
-                                <div>
-                                    <Product id={selectedProductId} />
-                                </div>
-                            )}
-                        </div>
+          <main>
+            <div className="content">
+                <div className="main">
+                <div className={`${selectedProductId ? "hidden" : "visible"}`}>
+                    <GetProducts categoryName={selectedCategoryName} onSelect={(product) => setSelectedProductId(product.id)}/>
                     </div>
-                  </main>
-        </div>
+                    {selectedProductId && (
+                        <div>
+                            <Product id={selectedProductId} />
+                        </div>
+                    )}
+                </div>
+            </div>
+          </main>
     )}
     </div>
   );
