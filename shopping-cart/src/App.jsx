@@ -9,6 +9,7 @@ function App () {
 	const [selectedCategoryName, setSelectedCategoryName] = useState();
 	const [displayCategory, setDisplayCategory] = useState();
 	const [displayProduct, setDisplayProduct] = useState();
+	const [displayCart, setDisplayCart] = useState();
 	let [cartItems, setCartItems] = useState([]);
     let category = !selectedCategoryName ? 'all': selectedCategoryName
     useEffect(() => {
@@ -23,7 +24,15 @@ function App () {
            setSelectedCategoryName(category.name);
            setDisplayCategory(true);
            setDisplayProduct(false);
-          }}/>
+           setDisplayCart(false);
+          }}
+          onSelectCart={() => {
+             setDisplayCategory(false);
+             setDisplayProduct(false);
+             setDisplayCart(true);
+             console.log(displayProduct);
+            }}
+          />
 
      {selectedCategoryName && (
           <main>
@@ -35,6 +44,7 @@ function App () {
                             setSelectedProductId(product.id);
                             setDisplayProduct(true);
                             setDisplayCategory(false);
+                            setDisplayCart(false);
                           }}
                               addToCart={(product) => {
                                 console.log('added')
@@ -59,7 +69,6 @@ function App () {
                         <div>
                             <Product id={selectedProductId} className={`${displayProduct ? "visible" : "hidden"}`}
                               addToCart={(product) => {
-                                console.log('added')
                                 console.log(product)
                                 cartItems = cartItems.slice();
                                 let alreadyInCart = false;
@@ -77,6 +86,9 @@ function App () {
                               }}/>
                         </div>
                     )}
+                </div>
+                <div className={`${displayCart ? "visible" : "hidden"}`}>
+                    <Cart cartItems={cartItems}/>
                 </div>
             </div>
           </main>

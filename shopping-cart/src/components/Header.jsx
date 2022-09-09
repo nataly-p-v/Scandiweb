@@ -5,7 +5,7 @@ import GetCategories from "../components/getCategories";
 import CartHeader from "../components/CartHeader";
 import logo from '../logo.svg';
 
-function Header({onSelectCategory, cartItems}) {
+function Header({onSelectCategory, cartItems, onSelectCart}) {
         return (
               <header>
               <div>
@@ -14,7 +14,12 @@ function Header({onSelectCategory, cartItems}) {
                 <div className="logo"> <img src={logo} alt="Logo" /></div>
                 <div className="header-cart">
                     <GetCurrencies/>
-                     <div className="cart-icon"><img src="images/empty_cart.svg" alt="logo"/> <CartHeader cartItems={cartItems}/></div>
+                     <div className="cart-icon"
+                                         onClick={() => {
+                                         console.log('cart')
+                                             onSelectCart();
+                                           }}
+                     ><img src="images/empty_cart.svg" alt="logo"/> <CartHeader cartItems={cartItems}/></div>
                 </div>
               </header>
         )
