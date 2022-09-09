@@ -6,20 +6,34 @@ import Header from './components/Header';
 function App () {
 	const [selectedProductId, setSelectedProductId] = useState();
 	const [selectedCategoryName, setSelectedCategoryName] = useState();
+	const [displayCategory, setDisplayCategory] = useState();
+	const [displayProduct, setDisplayProduct] = useState();
+
   return (
     <div className="grid-container">
-    <Header onSelectCategory={category => setSelectedCategoryName(category.name)}/>
+    <Header
+        onSelectCategory={(category) => {
+           setSelectedCategoryName(category.name);
+           setDisplayCategory(true);
+           setDisplayProduct(false);
+          }}/>
 
      {selectedCategoryName && (
           <main>
             <div className="content">
                 <div className="main">
-                <div className={`${selectedProductId ? "hidden" : "visible"}`}>
-                    <GetProducts categoryName={selectedCategoryName} onSelect={(product) => setSelectedProductId(product.id)}/>
+                <div className={`${displayCategory ? "visible" : "hidden"}`}>
+                    <GetProducts categoryName={selectedCategoryName}
+                        onSelect={(product) => {
+                            setSelectedProductId(product.id);
+                            setDisplayProduct(true);
+                            setDisplayCategory(false);
+                          }}
+                    />
                     </div>
                     {selectedProductId && (
                         <div>
-                            <Product id={selectedProductId} />
+                            <Product id={selectedProductId} className={`${displayProduct ? "visible" : "hidden"}`}/>
                         </div>
                     )}
                 </div>
