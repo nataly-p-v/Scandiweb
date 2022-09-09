@@ -15,11 +15,9 @@ function Header({onSelectCategory, cartItems, onSelectCart}) {
                 <div className="header-cart">
                     <GetCurrencies/>
                      <div className="cart-icon"
-                                         onClick={() => {
-                                         console.log('cart')
-                                             onSelectCart();
-                                           }}
-                     ><img src="images/empty_cart.svg" alt="logo"/> <CartHeader cartItems={cartItems}/></div>
+                        onClick={() => {
+                        onSelectCart();
+                        }}><img src="images/empty_cart.svg" alt="logo"/> <CartHeader cartItems={cartItems}/></div>
                 </div>
               </header>
         )

@@ -47,12 +47,13 @@ function Product({id, addToCart}) {
 <ul className="prices-list">
     {prices}
 </ul>
-<button className="product-button"
-  onClick={(e) => {
-    e.stopPropagation();
-    addToCart(product);
-    }}
-></button>
+<button
+    onClick={(e) => {
+      e.stopPropagation();
+      addToCart(product);
+      }}
+  className="product-button">
+</button>
 
 
                                  </div>

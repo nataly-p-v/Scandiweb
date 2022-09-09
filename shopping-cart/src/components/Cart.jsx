@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Cart({cartItems}) {
+function Cart({cartItems, removeFromCart}) {
         return (
         <div>
             <div className="cart">
@@ -11,7 +11,7 @@ function Cart({cartItems}) {
                             <div>{item.prices[0].amount}</div>
                             <div>{item.count}</div>
                             <div>{item.prices[0].amount*item.count}</div>
-                            <button onClick={() => this.props.removeFromCart(item)}>remove</button>
+                            <button onClick={() => removeFromCart(item)}>remove</button>
                         </li>
                      ))
                      : 'empty cart'

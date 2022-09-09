@@ -7,14 +7,17 @@ import Cart from './components/Cart';
 function App () {
 	const [selectedProductId, setSelectedProductId] = useState();
 	const [selectedCategoryName, setSelectedCategoryName] = useState();
-	const [displayCategory, setDisplayCategory] = useState();
-	const [displayProduct, setDisplayProduct] = useState();
-	const [displayCart, setDisplayCart] = useState();
+	const [displayCategory, setDisplayCategory] = useState(true);
+	const [displayProduct, setDisplayProduct] = useState(false);
+	const [displayCart, setDisplayCart] = useState(false);
 	let [cartItems, setCartItems] = useState([]);
     let category = !selectedCategoryName ? 'all': selectedCategoryName
     useEffect(() => {
        setDisplayCategory(true);
        setSelectedCategoryName(category)
+                    console.log(displayCategory+' displayCategory');
+                    console.log(displayProduct+' displayProduct');
+                    console.log(displayCart+' displayCart');
     }, []);
 
   return (
@@ -28,9 +31,12 @@ function App () {
           }}
           onSelectCart={() => {
              setDisplayCategory(false);
-             setDisplayProduct(false);
+            setDisplayProduct(false);
              setDisplayCart(true);
-             console.log(displayProduct);
+             console.log('onSelectCart');
+             console.log(displayCategory+' displayCategory');
+             console.log(displayProduct+' displayProduct');
+             console.log(displayCart+' displayCart');
             }}
           />
 
@@ -47,7 +53,6 @@ function App () {
                             setDisplayCart(false);
                           }}
                               addToCart={(product) => {
-                                console.log('added')
                                 console.log(product)
                                 cartItems = cartItems.slice();
                                 let alreadyInCart = false;
@@ -69,7 +74,6 @@ function App () {
                         <div>
                             <Product id={selectedProductId} className={`${displayProduct ? "visible" : "hidden"}`}
                               addToCart={(product) => {
-                                console.log(product)
                                 cartItems = cartItems.slice();
                                 let alreadyInCart = false;
                                 cartItems.forEach(item=>{
@@ -81,7 +85,6 @@ function App () {
                                 if(!alreadyInCart) {
                                     cartItems.push({...product, count:1})
                                     setCartItems(cartItems);
-                                    console.log(cartItems)
                                 }
                               }}/>
                         </div>
