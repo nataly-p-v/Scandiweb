@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GetProducts from './components/getProducts';
 import Product from './components/Product';
 import Header from './components/Header';
@@ -8,7 +8,11 @@ function App () {
 	const [selectedCategoryName, setSelectedCategoryName] = useState();
 	const [displayCategory, setDisplayCategory] = useState();
 	const [displayProduct, setDisplayProduct] = useState();
-
+    let category = !selectedCategoryName ? 'all': selectedCategoryName
+      useEffect(() => {
+           setDisplayCategory(true);
+                  setSelectedCategoryName(category)
+        }, []);
   return (
     <div className="grid-container">
     <Header

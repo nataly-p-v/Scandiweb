@@ -12,7 +12,6 @@ function Product({id}) {
     useEffect(() => {
         if (data) {
             setProduct(data.product)
-            console.log(data.product)
         }
     }, [data]);
 

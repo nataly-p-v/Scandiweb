@@ -21,7 +21,6 @@ function GetProducts({onClick, onSelect, categoryName, isVisible, addToCart, cle
                 {products.map(product => (
                     <li key={product.id} className="products-list__item"
                     onClick={() => {
-                        console.log('select product');
                         onSelect(product);
                       }}
                     >
