@@ -4,7 +4,6 @@ import GetCurrencies from "../components/getCurrencies";
 import GetCategories from "../components/getCategories";
 import CartHeader from "../components/CartHeader";
 import logo from '../logo.svg';
-import { Link } from "react-router-dom";
 
 function Header({onSelectCategory, cartItems}) {
         return (
@@ -12,10 +11,10 @@ function Header({onSelectCategory, cartItems}) {
               <div>
                  <GetCategories onSelectCategory={onSelectCategory}/>
                 </div>
-                <div className="logo"> <Link to="/"><img src={logo} alt="Logo" /></Link></div>
+                <div className="logo"> <img src={logo} alt="Logo" /></div>
                 <div className="header-cart">
                     <GetCurrencies/>
-                     <div className="cart-icon"><Link to="/cart"><img src="images/empty_cart.svg" alt="logo"/> <CartHeader cartItems={cartItems}/></Link></div>
+                     <div className="cart-icon"><img src="images/empty_cart.svg" alt="logo"/> <CartHeader cartItems={cartItems}/></div>
                 </div>
               </header>
         )

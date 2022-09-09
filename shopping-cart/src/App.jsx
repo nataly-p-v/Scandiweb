@@ -3,7 +3,6 @@ import GetProducts from './components/getProducts';
 import Product from './components/Product';
 import Header from './components/Header';
 import Cart from './components/Cart';
-import { Routes, Route} from "react-router-dom";
 
 function App () {
 	const [selectedProductId, setSelectedProductId] = useState();
@@ -28,9 +27,6 @@ function App () {
 
      {selectedCategoryName && (
           <main>
-          <Routes>
-           <Route path="/cart" element={<Cart cartItems={cartItems}/>}></Route>
-          </Routes>
             <div className="content">
                 <div className="main">
                 <div className={`${displayCategory ? "visible" : "hidden"}`}>
