@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery} from "@apollo/client";
 import { LOAD_PRODUCT } from '../GraphQL/queries.js';
 
-function Product({id}) {
+function Product({id, addToCart}) {
    const [product, setProduct] = useState([]);
    const { data } = useQuery(LOAD_PRODUCT, {
           variables: {
@@ -47,6 +47,12 @@ function Product({id}) {
 <ul className="prices-list">
     {prices}
 </ul>
+<button className="product-button"
+  onClick={(e) => {
+    e.stopPropagation();
+    addToCart(product);
+    }}
+></button>
 
 
                                  </div>

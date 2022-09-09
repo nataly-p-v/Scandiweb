@@ -35,7 +35,10 @@ function GetProducts({onClick, onSelect, categoryName, isVisible, addToCart, cle
 
                                 </div>
                                 <button
-                                  onClick={() => addToCart(product)}
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      addToCart(product);
+                                      }}
                                   className="product-button">
                                 </button>
                              </div>

@@ -33,11 +33,19 @@ function App () {
                             setDisplayProduct(true);
                             setDisplayCategory(false);
                           }}
+                          addToCart={(product) => {
+                            console.log('added')
+                            console.log(product)
+                          }}
                     />
                     </div>
                     {selectedProductId && (
                         <div>
-                            <Product id={selectedProductId} className={`${displayProduct ? "visible" : "hidden"}`}/>
+                            <Product id={selectedProductId} className={`${displayProduct ? "visible" : "hidden"}`}
+                              addToCart={(product) => {
+                                console.log('added')
+                                console.log(product)
+                              }}/>
                         </div>
                     )}
                 </div>
