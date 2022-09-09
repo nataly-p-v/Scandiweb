@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import GetProducts from './components/getProducts';
-import GetCategories from './components/getCategories';
 import Product from './components/Product';
-import Category from './components/Category';
 import Header from './components/Header';
 
 function App () {

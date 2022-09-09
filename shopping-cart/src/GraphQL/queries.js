@@ -26,9 +26,15 @@ category(input: { title: $category }) {
             gallery
             description
             category
-            attributes{
-              name
-            }
+           attributes{
+             id
+             name
+             type
+             items {
+              displayValue
+             }
+
+           }
             prices{
               amount
               currency{
@@ -51,9 +57,15 @@ query product($id : String!) {
             gallery
             description
             category
-            attributes{
-              name
-            }
+           attributes{
+             id
+             name
+             type
+             items {
+              displayValue
+             }
+
+           }
             prices{
               amount
               currency{

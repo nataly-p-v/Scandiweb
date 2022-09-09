@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import 'react-dropdown/style.css';
-import CartHeader from '../components/CartHeader.js';
 import GetCurrencies from "../components/getCurrencies";
 import GetCategories from "../components/getCategories";
 import logo from '../logo.svg';
