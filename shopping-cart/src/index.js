@@ -10,6 +10,7 @@ import {
   from,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
+import { BrowserRouter } from "react-router-dom";
 
 const errorLink = onError(({ graphqlErrors, networkError }) => {
   if (graphqlErrors) {
@@ -33,6 +34,8 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
    <ApolloProvider client={client}>
+   <BrowserRouter>
     <App />
+    </BrowserRouter>
    </ApolloProvider>
 );

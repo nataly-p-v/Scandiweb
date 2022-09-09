@@ -1,8 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Cart extends Component {
-    render(){
-    const {cartItems} = this.props;
+function Cart({cartItems}) {
         return (
         <div>
             <div className="cart">
@@ -23,6 +21,5 @@ class Cart extends Component {
             </div>
         </div>
         )
-    }
 }
 export default Cart;
