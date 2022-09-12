@@ -5,11 +5,11 @@ import GetCategories from "../components/getCategories";
 import CartHeader from "../components/CartHeader";
 import logo from '../logo.svg';
 
-function Header({onSelectCategory, cartItems, onSelectCart}) {
+function Header({onSelectCategory, cartItems, onSelectCart, defaultCategory}) {
         return (
               <header>
               <div>
-                 <GetCategories onSelectCategory={onSelectCategory}/>
+                 <GetCategories onSelectCategory={onSelectCategory} defaultCategory={defaultCategory}/>
                 </div>
                 <div className="logo"> <img src={logo} alt="Logo" /></div>
                 <div className="header-cart">

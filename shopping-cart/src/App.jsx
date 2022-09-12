@@ -12,16 +12,17 @@ function App () {
 	const [isShowCategory, setIsShowCategory] = React.useState(false);
 	const [isShowProduct, setIsShowProduct] = React.useState(false);
 
-    let category = !selectedCategoryName ? 'all': selectedCategoryName;
+    let defaultCategory = !selectedCategoryName ? 'all': selectedCategoryName;
 
     useEffect(() => {
-       setSelectedCategoryName(category);
+       setSelectedCategoryName(defaultCategory);
        setIsShowCategory(true);
     }, []);
 
   return (
     <div className="grid-container">
     <Header cartItems={cartItems}
+        defaultCategory={defaultCategory}
         onSelectCategory={(category) => {
            setSelectedCategoryName(category.name);
            setIsShowCategory(true);
@@ -38,7 +39,7 @@ function App () {
      {selectedCategoryName && (
           <main>
                 {isShowCategory &&
-                 <GetProducts categoryName={selectedCategoryName} className="products-list__wrapper"
+                 <GetProducts categoryName={selectedCategoryName}
                        onSelectProduct={(product) => {
                            setSelectedProductId(product.id);
                            setIsShowProduct(true);
