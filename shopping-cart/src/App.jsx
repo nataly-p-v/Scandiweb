@@ -22,6 +22,12 @@ function App () {
   return (
     <div className="grid-container">
     <Header cartItems={cartItems}
+        onOptionClicked={(category) => {
+           setSelectedCategoryName(category.name);
+           setIsShowCategory(true);
+           setIsShowCart(false);
+           setIsShowProduct(false);
+          }}
         defaultCategory={defaultCategory}
         onSelectCategory={(category) => {
            setSelectedCategoryName(category.name);

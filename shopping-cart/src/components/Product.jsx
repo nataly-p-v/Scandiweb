@@ -17,48 +17,69 @@ function Product({id, addToCart}) {
 
   const attributes = (product.attributes) ?
        (product.attributes.map((attr,i) => {
-            return <li key={i} className="attributes__item"> {attr.name} {attr.type}
-                       {(attr.items.map((item,i) => {
-                            return <div key={i} className="attributes__value"> {item.displayValue}</div>;
-                         }))}
-            </li>;
+            return <li key={Math.random()} className="attributes__item"> <span className="attributes__item-name">{attr.name}</span>
+                       <div className="attributes__item-values">
+                           {(attr.items.map((item,i) => {
+                            return <div key={Math.random()} onClick={(e) => { console.log(item.displayValue) }}
+                                   className="attributes__item-value"> {item.displayValue}</div>;
+                             }))}
+                       </div>
+                    </li>;
          })) : '';
+
+   const thumbnails = (product.gallery) ?
+        (product.gallery.map((image,i) => {
+             return <div key={Math.random()} className="product-card__thumbnail">
+                        <img src={image} alt="product"></img>
+                     </div>;
+
+          })) : '';
    const prices = (product.prices) ?
         (product.prices.map((price,i) => {
-             return <li key={i} className="prices__item">{price.amount} {price.currency.symbol} {price.currency.label}</li>;
+             return <li key={Math.random()} className="prices__item"><span className="attributes__item-name">Price:</span>
+             {price.amount} {price.currency.symbol} {price.currency.label}</li>;
           })) : '';
 
     return (
         <div>
                 {!product ? (<div>Loading...</div>) : (
-                    <ul className="products-list">
-                        <li key={id} className="product-list__item" >
+                    <div className="product-card">
+                        <div className="product-card__wrapper" >
                                  {!product.inStock && <div className="outStock">Out of stock</div>}
-                                 <div className="product">
-                                    <img src={product.gallery} alt={product.id}></img>
-<div>{product.brand}</div>
-<div>{product.category}</div>
-<div>{product.description}</div>
-<div>{product.inStock}</div>
-<div>{product.name}</div>
-<ul className="atrributes-list">
-    {attributes}
-</ul>
-<ul className="prices-list">
-    {prices}
-</ul>
-<button
-    onClick={(e) => {
-      e.stopPropagation();
-      addToCart(product);
-      }}
-  className="product-button">
-</button>
-
-
+                                 <div className="product-card__item">
+                                     <div className="product-card__photo-section">
+                                        <section className="product-cart__thumb-wrapper">
+                                            <aside className="product-card__thumbnails">
+                                                {thumbnails}
+                                            </aside>
+                                             <aside className="product-card__photo">
+                                                <div>{product.inStock}</div>
+                                                <img src={product.gallery} alt={product.id}></img>
+                                             </aside>
+                                        </section>
+                                     </div>
+                                     <div className="product-card__info">
+                                         <h1>{product.name}</h1>
+                                         <h2>{product.brand}</h2>
+                                         <ul className="product-card__atrributes">
+                                             {attributes}
+                                         </ul>
+                                         <ul className="product-card__prices">
+                                             {prices}
+                                         </ul>
+                                         <button
+                                             onClick={(e) => {
+                                               e.stopPropagation();
+                                               addToCart(product);
+                                               }}
+                                           className="product-card__button"> Add to Cart
+                                         </button>
+                                         <div>
+                                         <div dangerouslySetInnerHTML={{__html: product.description}}/></div>
+                                     </div>
                                  </div>
-                               </li>
-                        </ul>
+                               </div>
+                        </div>
                     )}
             </div>
     )
