@@ -15,7 +15,8 @@ function App () {
     let category = !selectedCategoryName ? 'all': selectedCategoryName;
 
     useEffect(() => {
-       setSelectedCategoryName(category)
+       setSelectedCategoryName(category);
+       setIsShowCategory(true);
     }, []);
 
   return (
@@ -36,10 +37,8 @@ function App () {
 
      {selectedCategoryName && (
           <main>
-            <div className="content">
-                <div className="main">
                 {isShowCategory &&
-                 <GetProducts categoryName={selectedCategoryName}
+                 <GetProducts categoryName={selectedCategoryName} className="products-list__wrapper"
                        onSelectProduct={(product) => {
                            setSelectedProductId(product.id);
                            setIsShowProduct(true);
@@ -82,8 +81,6 @@ function App () {
                 {isShowCart &&
                     <Cart cartItems={cartItems}/>
                 }
-              </div>
-          </div>
        </main>
     )}
     </div>
