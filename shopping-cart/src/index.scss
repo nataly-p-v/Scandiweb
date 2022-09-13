@@ -237,10 +237,26 @@ a {
     text-align:left;
 
 }
-.product-card__thumbnail {
+.product-card__thumbnail, .attributes__item-values {
     &:hover {
         cursor:pointer;
     }
+}
+.attributes__item-value {
+     position: relative;
+     text-overflow: ellipsis;
+     overflow: hidden;
+     margin-right: 1rem;
+}
+.attributes__item-value--selected {
+    color:white;
+    background:black;
+}
+.attributes__item-value-center {
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translateY(-50%) translateX(-50%);
 }
 .product-card__info h2 {
     margin-bottom: 3rem;
