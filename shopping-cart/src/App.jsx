@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import GetProducts from './components/getProducts';
 import Product from './components/Product';
-import Header from './components/Header';
 import Cart from './components/Cart';
+import logo from './logo.svg';
+import GetCurrencies from "./components/getCurrencies";
+import GetCategories from "./components/getCategories";
+import CartHeader from "./components/CartHeader";
 
 function App () {
 	const [selectedProductId, setSelectedProductId] = useState();
@@ -11,7 +14,8 @@ function App () {
 	const [isShowCart, setIsShowCart] = React.useState(false);
 	const [isShowCategory, setIsShowCategory] = React.useState(false);
 	const [isShowProduct, setIsShowProduct] = React.useState(false);
-
+	const [isOpen, setIsOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState(null);
     let defaultCategory = !selectedCategoryName ? 'all': selectedCategoryName;
 
     useEffect(() => {
@@ -21,26 +25,40 @@ function App () {
 
   return (
     <div className="grid-container">
-    <Header cartItems={cartItems}
-        onOptionClicked={(category) => {
-           setSelectedCategoryName(category.name);
-           setIsShowCategory(true);
-           setIsShowCart(false);
-           setIsShowProduct(false);
-          }}
-        defaultCategory={defaultCategory}
-        onSelectCategory={(category) => {
-           setSelectedCategoryName(category.name);
-           setIsShowCategory(true);
-           setIsShowCart(false);
-           setIsShowProduct(false);
-          }}
-          onSelectCart={() => {
-           setIsShowCart(true);
-           setIsShowProduct(false);
-           setIsShowCategory(false);
-          }}
-          />
+           <header>
+                        <div>
+                           <GetCategories onSelectCategory={(category) => {
+                                                     setSelectedCategoryName(category.name);
+                                                     setIsShowCategory(true);
+                                                     setIsShowCart(false);
+                                                     setIsShowProduct(false);
+                                                    }}
+                                                     defaultCategory={defaultCategory}/>
+                          </div>
+                          <div className="logo"> <img src={logo} alt="Logo" /></div>
+                          <div className="header-cart">
+                             <div className={`currency ${isOpen ? "is-open" : ""}`}
+                             onClick={() => {
+                                   setIsOpen(!isOpen);
+                                   }}>
+                                   <div className="currency-header"> {selectedOption || "$"}
+                                    <div className="arrow"
+                                       ></div></div>
+                                       <GetCurrencies
+                                       onOptionClicked={(value) => {
+                                          setSelectedOption(value);
+                                          console.log(value)
+                                          setIsOpen(!isOpen);
+                                        }}/>
+                                        </div>
+                               <div className="cart-icon"
+                                  onClick={() => {
+                                     setIsShowCart(true);
+                                     setIsShowProduct(false);
+                                     setIsShowCategory(false);
+                                  }}><img src="images/empty_cart.svg" alt="logo"/> <CartHeader cartItems={cartItems}/></div>
+                          </div>
+                        </header>
 
      {selectedCategoryName && (
           <main>

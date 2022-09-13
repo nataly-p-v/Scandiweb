@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { LOAD_PRODUCTS } from '../GraphQL/queries.js';
 
-function GetProducts({onClick, onSelectProduct, categoryName, addToCart}) {
+function GetProducts({onSelectProduct, categoryName, addToCart}) {
    const [products, setProducts] = useState([]);
    const { data } = useQuery(LOAD_PRODUCTS, {
     variables: { category: categoryName },

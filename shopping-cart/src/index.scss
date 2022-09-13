@@ -103,7 +103,11 @@ a {
     font-size: 1.8rem;
     position: relative;
 }
+.currency.is-open .currency-dropdown{
+    display:block;
+}
 .currency-dropdown {
+    display:none;
     position:absolute;
     top:3rem;
     margin:0;
