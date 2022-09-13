@@ -79,6 +79,7 @@ function App () {
                                    alreadyInCart = true;
                                }
                            })
+
                            if(!alreadyInCart) {
                                cartItems.push({...product, count:1})
                                setCartItems(cartItems);
@@ -104,7 +105,15 @@ function App () {
                      }}/>
                 }
                 {isShowCart &&
-                    <Cart cartItems={cartItems}/>
+                    <Cart cartItems={cartItems} selectedOption={selectedOption || "$"}
+                       handleIncreaseCart={(product) => {
+                       console.log(product)
+                       }}
+                       handleDecreaseCart={(product) => {
+                       console.log(product)
+                       }}
+                    />
+
                 }
        </main>
     )}
