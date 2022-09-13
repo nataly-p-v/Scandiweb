@@ -4,6 +4,7 @@ import { LOAD_PRODUCT } from '../GraphQL/queries.js';
 
 function Product({id, addToCart, selectedOption}) {
    const [product, setProduct] = useState([]);
+   const [mainImg, setMainImg] = useState([]);
    const { data } = useQuery(LOAD_PRODUCT, {
           variables: {
               id: id,
@@ -12,7 +13,7 @@ function Product({id, addToCart, selectedOption}) {
     useEffect(() => {
         if (data) {
             setProduct(data.product)
-            console.log(data.product)
+            setMainImg(data.product.gallery[0])
         }
     }, [data]);
 
@@ -30,7 +31,7 @@ function Product({id, addToCart, selectedOption}) {
 
    const thumbnails = (product.gallery) ?
         (product.gallery.map((image,i) => {
-             return <div key={Math.random()} className="product-card__thumbnail">
+             return <div key={Math.random()} className="product-card__thumbnail"  onClick={(e) => { setMainImg (image)}}>
                         <img src={image} alt="product"></img>
                      </div>;
 
@@ -46,7 +47,6 @@ function Product({id, addToCart, selectedOption}) {
                 {!product ? (<div>Loading...</div>) : (
                     <div className="product-card">
                         <div className="product-card__wrapper" >
-                                 {!product.inStock && <div className="outStock">Out of stock</div>}
                                  <div className="product-card__item">
                                      <div className="product-card__photo-section">
                                         <section className="product-cart__thumb-wrapper">
@@ -54,8 +54,7 @@ function Product({id, addToCart, selectedOption}) {
                                                 {thumbnails}
                                             </aside>
                                              <aside className="product-card__photo">
-                                                <div>{product.inStock}</div>
-                                                <img src={product.gallery } alt={product.id}></img>
+                                                <img src={mainImg} alt={product.id}></img>
                                              </aside>
                                         </section>
                                      </div>

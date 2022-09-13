@@ -233,6 +233,18 @@ a {
         color:$base-gray;
     }
 }
+.product-card__info h1, .product-card__info h2 {
+    text-align:left;
+
+}
+.product-card__thumbnail {
+    &:hover {
+        cursor:pointer;
+    }
+}
+.product-card__info h2 {
+    margin-bottom: 3rem;
+}
 .product-card__thumbnail {
     margin-bottom:1rem;
 }
