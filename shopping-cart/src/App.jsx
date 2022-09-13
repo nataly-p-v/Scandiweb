@@ -87,7 +87,7 @@ function App () {
                    />
                 }
                 {isShowProduct && selectedProductId &&
-                   <Product id={selectedProductId}
+                   <Product id={selectedProductId} selectedOption={selectedOption || "$"}
                      addToCart={(product) => {
                        cartItems = cartItems.slice();
                        let alreadyInCart = false;

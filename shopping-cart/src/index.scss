@@ -53,6 +53,7 @@ header {
 
 main {
     grid-area: main;
+    margin-top:6rem;
 }
 a {
   text-decoration: none;
@@ -158,6 +159,11 @@ a {
     padding: 0 3rem 5rem;
   }
 }
+  .prices__item {
+    text-align:left;
+    font-weight:bold;
+    margin-bottom:1rem;
+  }
 
 .product {
   height: 100%;
@@ -194,7 +200,6 @@ a {
   }
   &__price {
       display: flex;
-
   }
   &__button{
      display:none;
@@ -228,8 +233,11 @@ a {
         color:$base-gray;
     }
 }
+.product-card__thumbnail {
+    margin-bottom:1rem;
+}
 .product-card__thumbnail  img {
-   width:200px;
+   width: 85px;
 
 }
 .product-cart__thumb-wrapper{
@@ -268,6 +276,10 @@ a {
     display:grid;
     grid-template-columns: 2fr 1fr;
 }
+  .product-card__description {
+      text-align: left;
+      margin-top: 3rem;
+  }
 .attributes__item-name {
     font-family: 'Roboto Condensed';
     font-style: normal;
@@ -275,6 +287,7 @@ a {
     font-size: 1.8rem;
     line-height: 1.8rem;
     display: flex;
+    margin:1rem 0;
     align-items: center;
     text-align: center;
     color: #1D1F22;

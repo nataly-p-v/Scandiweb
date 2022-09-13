@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery} from "@apollo/client";
 import { LOAD_PRODUCT } from '../GraphQL/queries.js';
 
-function Product({id, addToCart}) {
+function Product({id, addToCart, selectedOption}) {
    const [product, setProduct] = useState([]);
    const { data } = useQuery(LOAD_PRODUCT, {
           variables: {
@@ -12,6 +12,7 @@ function Product({id, addToCart}) {
     useEffect(() => {
         if (data) {
             setProduct(data.product)
+            console.log(data.product)
         }
     }, [data]);
 
@@ -36,8 +37,8 @@ function Product({id, addToCart}) {
           })) : '';
    const prices = (product.prices) ?
         (product.prices.map((price,i) => {
-             return <li key={Math.random()} className="prices__item"><span className="attributes__item-name">Price:</span>
-             {price.amount} {price.currency.symbol} {price.currency.label}</li>;
+             return <li key={Math.random()} className="prices__item">
+             {(price.currency.symbol === selectedOption) ? price.amount+ price.currency.symbol : ''}</li>;
           })) : '';
 
     return (
@@ -54,7 +55,7 @@ function Product({id, addToCart}) {
                                             </aside>
                                              <aside className="product-card__photo">
                                                 <div>{product.inStock}</div>
-                                                <img src={product.gallery} alt={product.id}></img>
+                                                <img src={product.gallery } alt={product.id}></img>
                                              </aside>
                                         </section>
                                      </div>
@@ -65,7 +66,9 @@ function Product({id, addToCart}) {
                                              {attributes}
                                          </ul>
                                          <ul className="product-card__prices">
+                                         <span className="attributes__item-name">Price:</span>
                                              {prices}
+
                                          </ul>
                                          <button
                                              onClick={(e) => {
@@ -75,7 +78,7 @@ function Product({id, addToCart}) {
                                            className="product-card__button"> Add to Cart
                                          </button>
                                          <div>
-                                         <div dangerouslySetInnerHTML={{__html: product.description}}/></div>
+                                         <div className="product-card__description" dangerouslySetInnerHTML={{__html: product.description}}/></div>
                                      </div>
                                  </div>
                                </div>
