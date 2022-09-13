@@ -24,7 +24,7 @@ function GetProducts({onSelectProduct, categoryName, addToCart}) {
                 {products.map(product => (
                     <li key={product.id} className="products-list__item"
                     onClick={() => {
-                        onSelectProduct(product);
+                        if(product.inStock){ onSelectProduct(product)}
                       }}
                     >
                              {!product.inStock && <div className="outStock"> <p>Out of stock</p></div>}
