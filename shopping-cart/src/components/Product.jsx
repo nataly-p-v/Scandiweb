@@ -33,7 +33,7 @@ function Product({id, addToCart, selectedOption, onSelectAttribute, attributeMap
            const attributes = (product.attributes) ?
                 (product.attributes.map((attr,i) => {
 
-                      return <label key={Math.random()} className="attributes__item" htmlFor={attr.name}>
+                      return <div key={Math.random()} className="attributes__item" htmlFor={attr.name}>
                         <span className="attributes__item-name">{attr.name}</span>
                         <div className="attributes__item-values">
                             {(attr.items.map((item,i) => {
@@ -45,7 +45,7 @@ function Product({id, addToCart, selectedOption, onSelectAttribute, attributeMap
                                     {item.displayValue}</div>;
                               }))}
                         </div>
-                      </label>
+                      </div>
 
 
 
