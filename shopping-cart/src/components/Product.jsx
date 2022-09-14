@@ -32,15 +32,23 @@ function Product({id, addToCart, selectedOption, onSelectAttribute, attributeMap
 
            const attributes = (product.attributes) ?
                 (product.attributes.map((attr,i) => {
-                     return <li key={Math.random()} className="attributes__item"> <span className="attributes__item-name">{attr.name}</span>
-                                <div className="attributes__item-values">
-                                    {(attr.items.map((item,i) => {
-                                     return <div key={Math.random()} onClick={(e) => { setSelectedAttribute(item.displayValue); setSelectedAttributeName(attr.name); onSelectAttribute(attr.name, item.displayValue);console.log(item.displayValue)}}
-                                            className={`attributes__item-value ${(selectedAttribute === item.displayValue) && (selectedAttributeName === attr.name) ? ' attributes__item-value--selected' : ''}`}>
-                                            <div className="attributes__item-value-center">{item.displayValue}</div></div>;
-                                      }))}
-                                </div>
-                             </li>;
+
+                      return <label key={Math.random()} className="attributes__item" htmlFor={attr.name}>
+                        <span className="attributes__item-name">{attr.name}</span>
+                        <div className="attributes__item-values">
+                            {(attr.items.map((item,i) => {
+                             return <div key={Math.random()} >
+
+                                    <input type="radio" id={item.displayValue} name={attr.name} value={item.displayValue} onChange={()=> {console.log(item.displayValue); onSelectAttribute(attr.name, item.displayValue);}}
+                                                 /> <div className="attributes__item-value"><div className="attributes__item-value-center">{item.displayValue}</div></div>
+
+                                    {item.displayValue}</div>;
+                              }))}
+                        </div>
+                      </label>
+
+
+
                   })) : '';
 
    const thumbnails = (product.gallery) ?
@@ -75,9 +83,9 @@ function Product({id, addToCart, selectedOption, onSelectAttribute, attributeMap
                                      <div className="product-card__info">
                                          <h1>{product.name}</h1>
                                          <h2>{product.brand}</h2>
-                                         <ul className="product-card__atrributes">
+                                         <div className="product-card__atrributes">
                                              {attributes}
-                                         </ul>
+                                         </div>
                                          <ul className="product-card__prices">
                                          <span className="attributes__item-name">Price:</span>
                                              {prices}

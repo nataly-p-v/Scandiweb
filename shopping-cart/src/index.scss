@@ -252,6 +252,9 @@ a {
     color:white;
     background:black;
 }
+input[type="radio"]:checked + div {
+   box-shadow: 0 0 0 3px orange;
+ }
 .attributes__item-value-center {
   position: absolute;
   top: 50%;
