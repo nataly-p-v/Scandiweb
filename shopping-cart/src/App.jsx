@@ -16,9 +16,8 @@ function App () {
 	const [isShowProduct, setIsShowProduct] = React.useState(false);
 	const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
-    const [selectedAttributes, setSelectedAttributes] = useState([]);
     let defaultCategory = !selectedCategoryName ? 'all': selectedCategoryName;
-    let attributeMap = new Map();
+    const [attributeMap, setAttributeMap] = useState(new Map());
     useEffect(() => {
        setSelectedCategoryName(defaultCategory);
        setIsShowCategory(true);
@@ -87,7 +86,7 @@ function App () {
                    />
                 }
                 {isShowProduct && selectedProductId &&
-                   <Product id={selectedProductId} selectedOption={selectedOption || "$"}
+                   <Product id={selectedProductId} selectedOption={selectedOption || "$"} attributeMap={attributeMap}
                      addToCart={(product) => {
                        cartItems = cartItems.slice();
                        cartItems.forEach(item=>{
@@ -99,11 +98,8 @@ function App () {
                        setCartItems(cartItems);
                      }}
                      onSelectAttribute={(attr, value) => {
-
-attributeMap.set(attr, value);
-console.log(attributeMap)
-                        selectedAttributes.push([attr, value])
-                        console.log(selectedAttributes)
+                        setAttributeMap(attributeMap.set(attr, value))
+                        console.log(attributeMap)
                      }}
                      />
                 }
