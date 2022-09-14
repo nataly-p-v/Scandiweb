@@ -16,6 +16,7 @@ function App () {
 	const [isShowProduct, setIsShowProduct] = React.useState(false);
 	const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedAttributes, setSelectedAttributes] = useState([]);
     let defaultCategory = !selectedCategoryName ? 'all': selectedCategoryName;
 
     useEffect(() => {
@@ -27,39 +28,34 @@ function App () {
     <div className="grid-container">
            <header>
                         <div>
-                           <GetCategories onSelectCategory={(category) => {
-                                                     setSelectedCategoryName(category.name);
-                                                     setIsShowCategory(true);
-                                                     setIsShowCart(false);
-                                                     setIsShowProduct(false);
-                                                    }}
-                                                     defaultCategory={defaultCategory}/>
+                           <GetCategories defaultCategory={defaultCategory}
+                                onSelectCategory={(category) => {
+                                    setSelectedCategoryName(category.name);
+                                    setIsShowCategory(true);
+                                    setIsShowCart(false);
+                                    setIsShowProduct(false);
+                           }}/>
                           </div>
                           <div className="logo"> <img src={logo} alt="Logo" /></div>
                           <div className="header-cart">
-                             <div className={`currency ${isOpen ? "is-open" : ""}`}
-                             onClick={() => {
-                                   setIsOpen(!isOpen);
-                                   }}>
-                                   <div className="currency-header"> {selectedOption || "$"}
-                                    <div className="arrow"
-                                       ></div></div>
+                             <div className={`currency ${isOpen ? "is-open" : ""}`} onClick={() => {setIsOpen(!isOpen)}}>
+                                   <div className="currency-header"> {selectedOption || "$"}<div className="arrow"></div></div>
                                        <GetCurrencies
-                                       onOptionClicked={(value) => {
-                                          setSelectedOption(value);
-                                          console.log(value)
-                                          setIsOpen(!isOpen);
-                                        }}/>
+                                           onOptionClicked={(value) => {
+                                              setSelectedOption(value);
+                                              console.log(value)
+                                              setIsOpen(!isOpen);
+                                            }}/>
                                         </div>
                                <div className="cart-icon"
                                   onClick={() => {
                                      setIsShowCart(true);
                                      setIsShowProduct(false);
                                      setIsShowCategory(false);
-                                  }}><img src="images/empty_cart.svg" alt="logo"/> <CartHeader cartItems={cartItems}/></div>
+                                  }}><img src="images/empty_cart.svg" alt="logo"/>
+                                  <CartHeader cartItems={cartItems}/></div>
                           </div>
                         </header>
-
      {selectedCategoryName && (
           <main>
                 {isShowCategory &&
@@ -72,18 +68,21 @@ function App () {
                          }}
                          addToCart={(product) => {
                            cartItems = cartItems.slice();
-                           let alreadyInCart = false;
+                           cartItems.push({...product, count:1})
+
                            cartItems.forEach(item=>{
+                           console.log('productId'+product.id)
+                           console.log('itemId'+item.id)
                                if(item.id === product.id) {
                                    item.count++;
-                                   alreadyInCart = true;
+                                   console.log(item.count)
+
+                               } else {
+                                cartItems.push({...product, count:1})
+                                item.count++;
                                }
                            })
-
-                           if(!alreadyInCart) {
-                               cartItems.push({...product, count:1})
-                               setCartItems(cartItems);
-                           }
+                           setCartItems(cartItems);
                              }}
                    />
                 }
@@ -98,15 +97,22 @@ function App () {
                        })
                        cartItems.push({...product, count:1})
                        setCartItems(cartItems);
-                     }}/>
+                     }}
+                     onSelectAttribute={(attributeArr) => {
+                       console.log(attributeArr)
+
+                        selectedAttributes.push({...attributeArr})
+                        console.log(selectedAttributes)
+                     }}
+                     />
                 }
                 {isShowCart &&
                     <Cart cartItems={cartItems} selectedOption={selectedOption || "$"}
-                       handleIncreaseCart={(product) => {
-                       console.log(product)
+                       handleIncreaseCart={(count) => {
+                        count++;
                        }}
-                       handleDecreaseCart={(product) => {
-                       console.log(product)
+                       handleDecreaseCart={(count) => {
+                         count--;
                        }}
                     />
 

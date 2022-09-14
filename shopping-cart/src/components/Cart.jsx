@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, handleIncreaseCart}) {
+function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, handleIncreaseCart, onSelectAttribute}) {
    const [selectedAttribute, setSelectedAttribute] = useState([]);
         return (
         <div>
@@ -8,7 +8,7 @@ function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, ha
             <ul className="main-cart">
                 <div className="main-cart__items">
                      {cartItems.length>0 ? cartItems.map((item, i) => (
-                        <li className="main-cart__item"key={item.id}>
+                        <li className="main-cart__item" key={Math.random()}>
                         <div>
                             <h2 className="main-cart__items-name">{item.name}</h2>
                             <h3>{item.brand}</h3>
@@ -18,14 +18,13 @@ function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, ha
                                      {price.currency.symbol}{price.amount}  </li> : '';
                                   }))}
                              </ul>
-                             <div className="main-cart__items-qty">{item.count}</div>
                               <div className="product-card__attributes">
                                  {(item.attributes.map((attr,i) => {
                                        return <div key={Math.random()} className="product-card__attributes-item">
                                                 <span className="attributes__item-name">{attr.name}</span>
                                                 <div className="attributes__item-values">
                                                     {(attr.items.map((attrItem,i) => {
-                                                       return <div key={Math.random()} onClick={(e) => { setSelectedAttribute(item.displayValue);console.log(item.displayValue)}}
+                                                       return <div key={Math.random()} onClick={(e) => { setSelectedAttribute(item.displayValue); onSelectAttribute(item.displayValue)}}
                                                               className={`attributes__item-value ${selectedAttribute === item.displayValue ? ' attributes__item-value--selected' : ''}`}>
                                                               <div className="attributes__item-value-center">{attrItem.displayValue}</div>
 
@@ -37,9 +36,9 @@ function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, ha
                               </div>
                         </div>
                              <div className="cart-product-quantity">
-                                 <button className="cart-product-plus"onClick={() => handleIncreaseCart(item)}>+</button>
-                                 <div className="count">{cartItems.length}</div>
-                                 <button className="cart-product-minus" onClick={() => handleDecreaseCart(item)}>-</button>
+                                 <button className="cart-product-plus"onClick={() => handleIncreaseCart(item.count)}>+</button>
+                                 <div className="count">{item.count}</div>
+                                 <button className="cart-product-minus" onClick={() => handleDecreaseCart(item.count)}>-</button>
 
                              </div>
                              <div className="product-card__img"><img src={item.gallery[0]} alt="product"></img></div>
