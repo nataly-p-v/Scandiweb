@@ -6,7 +6,6 @@ function Product({id, addToCart, selectedOption}) {
    const [product, setProduct] = useState([]);
    const [mainImg, setMainImg] = useState([]);
    const [selectedAttribute, setSelectedAttribute] = useState([]);
-   const [isSetAttribute, setIsSetAttribute] = useState([]);
    const { data } = useQuery(LOAD_PRODUCT, {
           variables: {
               id: id,

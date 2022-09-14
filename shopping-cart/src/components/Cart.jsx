@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, handleIncreaseCart}) {
-console.log(selectedOption)
+   const [selectedAttribute, setSelectedAttribute] = useState([]);
         return (
         <div>
          <h1 className="cart-name">Cart</h1>
@@ -9,40 +9,41 @@ console.log(selectedOption)
                 <div className="main-cart__items">
                      {cartItems.length>0 ? cartItems.map((item, i) => (
                         <li className="main-cart__item"key={item.id}>
-                             <h2 className="main-cart__items-name">{item.name}</h2>
-                             <h3>{item.brand}</h3>
-                             <div className="main-cart__items-qty">{item.count}</div>
+                        <div>
+                            <h2 className="main-cart__items-name">{item.name}</h2>
+                            <h3>{item.brand}</h3>
                              <ul className="product-card__prices">
-                        {
-                                (item.prices.map((price,i) => {
-                                     return (price.currency.symbol === selectedOption) ? <li key={Math.random()}>
-                                     {price.amount} {price.currency.symbol} </li> : '';
-                                  })) }
+                                {(item.prices.map((price,i) => {
+                                     return (price.currency.symbol === selectedOption) ? <li className="prices__item" key={Math.random()}>
+                                     {price.currency.symbol}{price.amount}  </li> : '';
+                                  }))}
                              </ul>
-                             <ul className="product-card__attributes">
-                         {
-                                 (item.attributes.map((attr,i) => {
-                                      return <li key={Math.random()} className="product-card__attributes-item">
-                                      {attr.name}
-                                         {(attr.items.map((attrItem,i) => {
-                                                      return <div key={Math.random()} className="product-card__attributes-value">
-                                                      {attrItem.displayValue}
+                             <div className="main-cart__items-qty">{item.count}</div>
+                              <div className="product-card__attributes">
+                                 {(item.attributes.map((attr,i) => {
+                                       return <div key={Math.random()} className="product-card__attributes-item">
+                                                <span className="attributes__item-name">{attr.name}</span>
+                                                <div className="attributes__item-values">
+                                                    {(attr.items.map((attrItem,i) => {
+                                                       return <div key={Math.random()} onClick={(e) => { setSelectedAttribute(item.displayValue);console.log(item.displayValue)}}
+                                                              className={`attributes__item-value ${selectedAttribute === item.displayValue ? ' attributes__item-value--selected' : ''}`}>
+                                                              <div className="attributes__item-value-center">{attrItem.displayValue}</div>
 
-                                                      </div> ;
-                                                   })) }
-                                      </li> ;
-                                   })) }
-                             </ul>
-                             <div className="product-card__img"><img src={item.gallery[0]} alt="product"></img></div>
+                                                       </div> ;
+                                                    })) }
+                                                 </div>
+                                       </div> ;
+                                    }))}
+                              </div>
+                        </div>
                              <div className="cart-product-quantity">
-                                 <button onClick={() => handleDecreaseCart(item)}>
-                                   -
-                                 </button>
+                                 <button className="cart-product-plus"onClick={() => handleIncreaseCart(item)}>+</button>
                                  <div className="count">{cartItems.length}</div>
-                                 <button onClick={() => handleIncreaseCart(item)}>+</button>
-                             </div>
+                                 <button className="cart-product-minus" onClick={() => handleDecreaseCart(item)}>-</button>
 
-                            <button onClick={() => removeFromCart(item)}>remove</button>
+                             </div>
+                             <div className="product-card__img"><img src={item.gallery[0]} alt="product"></img></div>
+                             <button className="product-card__remove" onClick={() => removeFromCart(item)}>X</button>
                         </li>
                      ))
                      : <h1 className="cart-name">0 items added to cart!</h1>
@@ -51,13 +52,13 @@ console.log(selectedOption)
                 <div>Tax 21%</div>
                 <div>total: </div>
                 <div>quantity: {cartItems.length}</div>
-                                                                 <button
-                                                                    onClick={(e) => {
-                                                                      e.stopPropagation();
-                                                                      console.log('Order')
-                                                                      }}
-                                                                  className="product-card__button">Order
-                                                                </button>
+                 <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      console.log('Order')
+                      }}
+                  className="product-card__button">Order
+                </button>
             </ul>
         </div>
         )

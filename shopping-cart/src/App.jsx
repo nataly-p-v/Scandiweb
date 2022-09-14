@@ -91,17 +91,13 @@ function App () {
                    <Product id={selectedProductId} selectedOption={selectedOption || "$"}
                      addToCart={(product) => {
                        cartItems = cartItems.slice();
-                       let alreadyInCart = false;
                        cartItems.forEach(item=>{
                            if(item.id === product.id) {
                                item.count++;
-                               alreadyInCart = true;
                            }
                        })
-                       if(!alreadyInCart) {
-                           cartItems.push({...product, count:1})
-                           setCartItems(cartItems);
-                       }
+                       cartItems.push({...product, count:1})
+                       setCartItems(cartItems);
                      }}/>
                 }
                 {isShowCart &&
