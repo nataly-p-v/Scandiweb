@@ -18,7 +18,7 @@ function App () {
     const [selectedOption, setSelectedOption] = useState(null);
     const [selectedAttributes, setSelectedAttributes] = useState([]);
     let defaultCategory = !selectedCategoryName ? 'all': selectedCategoryName;
-
+    let attributeMap = new Map();
     useEffect(() => {
        setSelectedCategoryName(defaultCategory);
        setIsShowCategory(true);
@@ -98,10 +98,11 @@ function App () {
                        cartItems.push({...product, count:1})
                        setCartItems(cartItems);
                      }}
-                     onSelectAttribute={(attributeArr) => {
-                       console.log(attributeArr)
+                     onSelectAttribute={(attr, value) => {
 
-                        selectedAttributes.push({...attributeArr})
+attributeMap.set(attr, value);
+console.log(attributeMap)
+                        selectedAttributes.push([attr, value])
                         console.log(selectedAttributes)
                      }}
                      />

@@ -5,6 +5,7 @@ import { LOAD_PRODUCT } from '../GraphQL/queries.js';
 function Product({id, addToCart, selectedOption, onSelectAttribute}) {
    const [product, setProduct] = useState([]);
    const [mainImg, setMainImg] = useState([]);
+   const [selectedAttribute, setSelectedAttribute] = useState([]);
    const { data } = useQuery(LOAD_PRODUCT, {
           variables: {
               id: id,
@@ -18,17 +19,18 @@ function Product({id, addToCart, selectedOption, onSelectAttribute}) {
         }
     }, [data]);
 
-  const attributes = (product.attributes) ?
-       (product.attributes.map((attr,i) => {
-            return <li key={Math.random()} className="attributes__item"> <span className="attributes__item-name">{attr.name}</span>
-                       <div className="attributes__item-values">
-                           {(attr.items.map((item,i) => {
-                            return <div key={Math.random()} onClick={(e) => {onSelectAttribute([attr.name, item.displayValue])}}>
-                                   <div className="attributes__item-value-center">{item.displayValue}</div></div>;
-                             }))}
-                       </div>
-                    </li>;
-         })) : '';
+           const attributes = (product.attributes) ?
+                (product.attributes.map((attr,i) => {
+                     return <li key={Math.random()} className="attributes__item"> <span className="attributes__item-name">{attr.name}</span>
+                                <div className="attributes__item-values">
+                                    {(attr.items.map((item,i) => {
+                                     return <div key={Math.random()} onClick={(e) => { setSelectedAttribute(selectedAttribute => [...selectedAttribute,[attr.name, item.displayValue]]); onSelectAttribute(attr.name, item.displayValue)}}
+                                            className={`attributes__item-value ${selectedAttribute === item.displayValue ? ' attributes__item-value--selected' : ''}`}>
+                                            <div className="attributes__item-value-center">{item.displayValue}</div></div>;
+                                      }))}
+                                </div>
+                             </li>;
+                  })) : '';
 
    const thumbnails = (product.gallery) ?
         (product.gallery.map((image,i) => {
