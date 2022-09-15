@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery} from "@apollo/client";
 import { LOAD_PRODUCT } from '../GraphQL/queries.js';
+import Attribute from "./Attribute";
 
 function Product({id, addToCart, selectedOption, onSelectAttribute, attributeMap}) {
    const [product, setProduct] = useState([]);
    const [mainImg, setMainImg] = useState([]);
-   const [selectedAttribute, setSelectedAttribute] = useState([]);
-   const [selectedAttributeName, setSelectedAttributeName] = useState([]);
 
-   const values = ((map)=> {
+   /*const values = ((map)=> {
     for (const value of map.values()) {
          console.log(value);
        }
-   })
-
-
-
+   })*/
 
    const { data } = useQuery(LOAD_PRODUCT, {
           variables: {
@@ -33,17 +29,10 @@ function Product({id, addToCart, selectedOption, onSelectAttribute, attributeMap
            const attributes = (product.attributes) ?
                 (product.attributes.map((attr,i) => {
 
-                      return <div key={Math.random()} className="attributes__item" htmlFor={attr.name}>
+                      return <div key={Math.random()} className="attributes__item">
                         <span className="attributes__item-name">{attr.name}</span>
                         <div className="attributes__item-values">
-                            {(attr.items.map((item,i) => {
-                             return <div key={Math.random()} className="attributes__item-wrapper">
-
-                                    <input type="radio" id={item.displayValue} name={attr.name} value={item.displayValue} onChange={()=> {console.log(item.displayValue); onSelectAttribute(attr.name, item.displayValue);}}
-                                                 /> <div className="attributes__item-value"><div className="attributes__item-value-center">{item.displayValue}</div></div>
-
-                                    </div>;
-                              }))}
+                            <Attribute attr={attr} onSelectAttribute={onSelectAttribute}/>
                         </div>
                       </div>
 
