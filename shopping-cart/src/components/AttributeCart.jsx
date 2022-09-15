@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
-function AttributeCart({attributeMap, attr, attrName}) {
+function AttributeCart({attributeMap, attr, attrName, attributeIds}) {
       const [selectedAttribute, setSelectedAttribute] = useState([]);
       const [selectedAttrName, setSelectedAttrName] = useState([]);
+      const [selectedId, setSelectedId] = useState([]);
 
         useEffect(() => {
-
+console.log(attributeIds)
         attributeMap.forEach ((item,name) => {
             setSelectedAttribute(item);
             setSelectedAttrName(name);
             console.log(selectedAttribute,selectedAttrName);
+        })
+        attributeIds.forEach((i) => {
+            setSelectedId(i);
+
         })
 
         }, []);
@@ -16,9 +21,8 @@ function AttributeCart({attributeMap, attr, attrName}) {
     return (
         <div>
                {(attr.items.map((item,i) => {
-console.log(selectedAttribute === item.displayValue);
-                 return <div key={Math.random()}
-                        className={`attributes__item-value ${(selectedAttribute === item.displayValue) && (selectedAttrName === attrName) ? ' attributes__item-value--selected' : ''}`}>
+                 return <div key={Math.random()} id={i}
+                        className={`attributes__item-value ${(selectedId === i) ? ' attributes__item-value--selected' : ''}`}>
 
                         <div className="attributes__item-value-center">{item.displayValue}</div>
                  </div> ;
