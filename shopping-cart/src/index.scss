@@ -247,13 +247,37 @@ a {
      text-overflow: ellipsis;
      overflow: hidden;
      margin-right: 1rem;
+     outline:none;
 }
 .attributes__item-value--selected {
     color:white;
     background:black;
 }
+input[type="radio"] {
+    position: absolute;
+    z-index: 1;
+    width: 87%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    appearance: none;
+    outline:none;
+    margin:0;
+    &:focus {
+        outline:none;
+    }
+    &:hover {
+        cursor:pointer;
+    }
+}
 input[type="radio"]:checked + div {
-   box-shadow: 0 0 0 3px orange;
+    color:white;
+    background:black;
+
+ }
+ .attributes__item-wrapper {
+    position:relative;
  }
 .attributes__item-value-center {
   position: absolute;

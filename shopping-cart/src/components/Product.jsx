@@ -37,12 +37,12 @@ function Product({id, addToCart, selectedOption, onSelectAttribute, attributeMap
                         <span className="attributes__item-name">{attr.name}</span>
                         <div className="attributes__item-values">
                             {(attr.items.map((item,i) => {
-                             return <div key={Math.random()} >
+                             return <div key={Math.random()} className="attributes__item-wrapper">
 
                                     <input type="radio" id={item.displayValue} name={attr.name} value={item.displayValue} onChange={()=> {console.log(item.displayValue); onSelectAttribute(attr.name, item.displayValue);}}
                                                  /> <div className="attributes__item-value"><div className="attributes__item-value-center">{item.displayValue}</div></div>
 
-                                    {item.displayValue}</div>;
+                                    </div>;
                               }))}
                         </div>
                       </div>
