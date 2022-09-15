@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 
-function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, handleIncreaseCart, onSelectAttribute}) {
-   const [selectedAttribute, setSelectedAttribute] = useState([]);
+function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, handleIncreaseCart, attributeMap}) {
+    const getValuesFromMap = (map) => {
+       for (const element of map.values()) {
+         return element
+       }
+    }
         return (
         <div>
          <h1 className="cart-name">Cart</h1>
@@ -23,10 +27,13 @@ function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, ha
                                        return <div key={Math.random()} className="product-card__attributes-item">
                                                 <span className="attributes__item-name">{attr.name}</span>
                                                 <div className="attributes__item-values">
-                                                    {(attr.items.map((attrItem,i) => {
-                                                       return <div key={Math.random()} onClick={(e) => { setSelectedAttribute(item.displayValue); onSelectAttribute(item.displayValue)}}
-                                                              className={`attributes__item-value ${selectedAttribute === item.displayValue ? ' attributes__item-value--selected' : ''}`}>
-                                                              <div className="attributes__item-value-center">{attrItem.displayValue}</div>
+                                                    {(attr.items.map((item,i) => {
+                                                    {console.log( item.displayValue)}
+                                                    {console.log(getValuesFromMap(attributeMap))}
+                                                    {console.log((getValuesFromMap(attributeMap) === item.displayValue))}
+                                                       return <div key={Math.random()}
+                                                              className={`attributes__item-value ${(getValuesFromMap (attributeMap) === item.displayValue) ? ' attributes__item-value--selected' : ''}`}>
+                                                              <div className="attributes__item-value-center">{item.displayValue}</div>
 
                                                        </div> ;
                                                     })) }

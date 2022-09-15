@@ -104,7 +104,7 @@ function App () {
                      />
                 }
                 {isShowCart &&
-                    <Cart cartItems={cartItems} selectedOption={selectedOption || "$"}
+                    <Cart cartItems={cartItems} selectedOption={selectedOption || "$"} attributeMap={attributeMap}
                        handleIncreaseCart={(count) => {
                         count++;
                        }}

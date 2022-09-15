@@ -1,7 +1,6 @@
 import React from 'react';
 
 function CartHeader({cartItems}) {
-console.log(cartItems)
         return (
         <div>
             <div className="cart-count">
