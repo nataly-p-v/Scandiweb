@@ -5,10 +5,10 @@ function AttributeCart({attributeMap, attr, attrName, attributeIds}) {
       const [selectedId, setSelectedId] = useState([]);
 
         useEffect(() => {
-console.log(attributeIds)
-        attributeMap.forEach ((item,name) => {
-            setSelectedAttribute(item);
-            setSelectedAttrName(name);
+
+        attributeMap.forEach((i) => {
+console.log(i);
+setSelectedId(i);
         })
         attributeIds.forEach((i) => {
             setSelectedId(i);
