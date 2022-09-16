@@ -87,7 +87,7 @@ function App () {
                    />
                 }
                 {isShowProduct && selectedProductId &&
-                   <Product id={selectedProductId} selectedOption={selectedOption || "$"} attributeMap={attributeMap} attributeIds={attributeIds}
+                   <Product id={selectedProductId} selectedOption={selectedOption || "$"} attributeMap={attributeMap}
                      addToCart={(product) => {
                        cartItems = cartItems.slice();
                        cartItems.forEach(item=>{
@@ -101,7 +101,6 @@ function App () {
                      onSelectAttribute={(attr, value, i) => {
                         setAttributeMap(attributeMap.set(attr, value))
                         console.log(i)
-
                         /*setAttributeIds((attributeIds) => [...attributeIds, i])*/
                      }}
                      />

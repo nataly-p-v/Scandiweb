@@ -9,7 +9,6 @@ console.log(attributeIds)
         attributeMap.forEach ((item,name) => {
             setSelectedAttribute(item);
             setSelectedAttrName(name);
-            console.log(selectedAttribute,selectedAttrName);
         })
         attributeIds.forEach((i) => {
             setSelectedId(i);
