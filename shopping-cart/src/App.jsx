@@ -87,7 +87,7 @@ function App () {
                    />
                 }
                 {isShowProduct && selectedProductId &&
-                   <Product id={selectedProductId} selectedOption={selectedOption || "$"} attributeMap={attributeMap}
+                   <Product id={selectedProductId} selectedOption={selectedOption || "$"} attributeMap={attributeMap} attributeIds={attributeIds}
                      addToCart={(product) => {
                        cartItems = cartItems.slice();
                        cartItems.forEach(item=>{
