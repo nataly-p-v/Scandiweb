@@ -10,10 +10,6 @@ function AttributeCart({attributeMap, attr, attrName, attributeIds}) {
 console.log(i);
 setSelectedId(i);
         })
-        attributeIds.forEach((i) => {
-            setSelectedId(i);
-
-        })
 
         }, []);
 
