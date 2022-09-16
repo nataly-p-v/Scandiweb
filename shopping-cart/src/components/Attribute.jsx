@@ -1,12 +1,11 @@
 import React, { useState} from 'react';
-import { memo } from "react";
 
 function Attribute({attr, onSelectAttribute}) {
   const [selectedId, setSelectedId] = useState(null);
     return (
         <div>
                {(attr.items.map((item,i) => {
-               return <div key={Math.random()} id={i}
+               return <div key={i}
                        onClick={(e)=> {
                          onSelectAttribute(attr.name, item.displayValue, i);
                          setSelectedId(i);
@@ -19,4 +18,4 @@ function Attribute({attr, onSelectAttribute}) {
     )
 }
 
-export default Attribute = React.memo(Attribute);
+export default Attribute;

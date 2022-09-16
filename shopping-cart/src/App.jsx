@@ -55,7 +55,7 @@ function App () {
                                   }}><img src="images/empty_cart.svg" alt="logo"/>
                                   <CartHeader cartItems={cartItems}/></div>
                           </div>
-                        </header>
+           </header>
      {selectedCategoryName && (
           <main>
                 {isShowCategory &&
@@ -99,10 +99,7 @@ function App () {
                        setCartItems(cartItems);
                      }}
                      onSelectAttribute={(attr, value, i) => {
-                        setAttributeMap(attributeMap.set(attr, i))
-
-                        console.log(i)
-                        console.log(attributeMap)
+                        setAttributeMap(attributeMap.set(attr, value))
                      }}
                      />
                 }
@@ -115,7 +112,6 @@ function App () {
                          count--;
                        }}
                     />
-
                 }
        </main>
     )}
