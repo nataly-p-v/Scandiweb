@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import AttributeCart from "./AttributeCart";
 
 function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, handleIncreaseCart, attributeMap, attributeIds}) {
-      const [selectedId, setSelectedId] = useState([]);
+      const [selectedAttrId, setSelectedAttrId] = useState(null);
               useEffect(() => {
       console.log(attributeMap);
               attributeMap.forEach((i) => {
-      setSelectedId(i);
-      console.log(selectedId)
+                  setSelectedAttrId(i); //nothing
+                  console.log(i) //0 1 0
               })
 
               }, []);
@@ -33,7 +33,7 @@ function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, ha
                                                 <span className="attributes__item-name">{attr.name}</span>
                                                 <div className="attributes__item-values">
                                                     <AttributeCart
-                                                    attr={attr} attributeMap={attributeMap} attributeIds={attributeIds} attrName={attr.name} selectedId={selectedId} />
+                                                    attr={attr} attributeMap={attributeMap} attributeIds={attributeIds} attrName={attr.name} selectedAttrId={selectedAttrId} />
                                                  </div>
                                        </div> ;
                                     }))}
