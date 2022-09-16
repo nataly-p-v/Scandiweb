@@ -1,6 +1,8 @@
-import React, { useState, useEffect} from 'react';
-function Attribute({attr, onSelectAttribute, attributeIds}) {
-      const [selectedId, setSelectedId] = useState([]);
+import React, { useState} from 'react';
+import { memo } from "react";
+
+function Attribute({attr, onSelectAttribute}) {
+  const [selectedId, setSelectedId] = useState(null);
     return (
         <div>
                {(attr.items.map((item,i) => {
@@ -10,10 +12,11 @@ function Attribute({attr, onSelectAttribute, attributeIds}) {
                          setSelectedId(i);
                        }}
                       className={`attributes__item-value ${(selectedId === i) ? ' attributes__item-value--selected' : ''}`}>
-                      <div className="attributes__item-value-center">{item.displayValue}</div>
-                                </div>;
+                        <div className="attributes__item-value-center">{item.displayValue}</div>
+                      </div>;
                  }))}
             </div>
     )
 }
-export default Attribute;
+
+export default Attribute = React.memo(Attribute);

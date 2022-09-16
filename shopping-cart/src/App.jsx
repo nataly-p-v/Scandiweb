@@ -100,9 +100,9 @@ function App () {
                      }}
                      onSelectAttribute={(attr, value, i) => {
                         setAttributeMap(attributeMap.set(attr, value))
-                        console.log(attributeMap);
                         console.log(i)
-                        setAttributeIds([...attributeIds, i])
+
+                        /*setAttributeIds((attributeIds) => [...attributeIds, i])*/
                      }}
                      />
                 }
