@@ -2,6 +2,7 @@ import React from 'react';
 import AttributeCart from "./AttributeCart";
 
 function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, handleIncreaseCart, attributeMap, attributeIds}) {
+console.log(attributeIds)
         return (
         <div>
          <h1 className="cart-name">Cart</h1>
