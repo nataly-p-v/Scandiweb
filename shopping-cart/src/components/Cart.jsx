@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import AttributeCart from "./AttributeCart";
 
-function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, handleIncreaseCart, attributeMap}) {
+function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, handleIncreaseCart, attributeMap, attributeIds}) {
+      const [selectedId, setSelectedId] = useState([]);
+              useEffect(() => {
+      console.log(attributeMap);
+              attributeMap.forEach((i) => {
+      setSelectedId(i);
+      console.log(selectedId)
+              })
+
+              }, []);
         return (
         <div>
          <h1 className="cart-name">Cart</h1>
@@ -23,7 +32,8 @@ function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, ha
                                        return <div key={Math.random()} className="product-card__attributes-item">
                                                 <span className="attributes__item-name">{attr.name}</span>
                                                 <div className="attributes__item-values">
-                                                    <AttributeCart attr={attr} attributeMap={attributeMap} attrName={attr.name} />
+                                                    <AttributeCart
+                                                    attr={attr} attributeMap={attributeMap} attributeIds={attributeIds} attrName={attr.name} selectedId={selectedId} />
                                                  </div>
                                        </div> ;
                                     }))}

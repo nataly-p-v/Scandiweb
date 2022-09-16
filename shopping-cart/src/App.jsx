@@ -99,14 +99,15 @@ function App () {
                        setCartItems(cartItems);
                      }}
                      onSelectAttribute={(attr, value, i) => {
-                        setAttributeMap(attributeMap.set(i, i))
+                        setAttributeMap(attributeMap.set(attr, i))
+
                         console.log(i)
                         console.log(attributeMap)
                      }}
                      />
                 }
                 {isShowCart &&
-                    <Cart cartItems={cartItems} selectedOption={selectedOption || "$"} attributeMap={attributeMap}
+                    <Cart cartItems={cartItems} selectedOption={selectedOption || "$"} attributeMap={attributeMap} attributeIds={attributeIds}
                        handleIncreaseCart={(count) => {
                         count++;
                        }}
