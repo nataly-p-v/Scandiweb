@@ -1,8 +1,7 @@
 import React from 'react';
 import AttributeCart from "./AttributeCart";
 
-function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, handleIncreaseCart, attributeMap, attributeIds}) {
-console.log(attributeIds)
+function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, handleIncreaseCart, attributeMap}) {
         return (
         <div>
          <h1 className="cart-name">Cart</h1>
@@ -24,7 +23,7 @@ console.log(attributeIds)
                                        return <div key={Math.random()} className="product-card__attributes-item">
                                                 <span className="attributes__item-name">{attr.name}</span>
                                                 <div className="attributes__item-values">
-                                                    <AttributeCart attr={attr} attributeMap={attributeMap} attrName={attr.name} attributeIds={attributeIds}/>
+                                                    <AttributeCart attr={attr} attributeMap={attributeMap} attrName={attr.name} />
                                                  </div>
                                        </div> ;
                                     }))}
