@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import AttributeCart from "./AttributeCart";
 
-function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, handleIncreaseCart, attributeMap, attributeIds}) {
+function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, handleIncreaseCart, attributeMap}) {
       const [selectedAttrId, setSelectedAttrId] = useState(null);
+      let [itemQuantity, setItemQuantity] = useState(1);
               useEffect(() => {
-      console.log(attributeMap);
               attributeMap.forEach((i) => {
-                  setSelectedAttrId(i); //nothing
-                  console.log(i) //0 1 0
+                  setSelectedAttrId(i);
               })
-
+              console.log(itemQuantity)
               }, []);
         return (
         <div>
@@ -33,17 +32,18 @@ function Cart({cartItems, removeFromCart, selectedOption, handleDecreaseCart, ha
                                                 <span className="attributes__item-name">{attr.name}</span>
                                                 <div className="attributes__item-values">
                                                     <AttributeCart
-                                                    attr={attr} attributeMap={attributeMap} attributeIds={attributeIds} attrName={attr.name} selectedAttrId={selectedAttrId} />
+                                                    attr={attr} attributeMap={attributeMap} attrName={attr.name} selectedAttrId={selectedAttrId} />
                                                  </div>
                                        </div> ;
                                     }))}
                               </div>
                         </div>
                              <div className="cart-product-quantity">
-                                 <button className="cart-product-plus"onClick={() => handleIncreaseCart(item.count)}>+</button>
-                                 <div className="count">{item.count}</div>
-                                 <button className="cart-product-minus" onClick={() => handleDecreaseCart(item.count)}>-</button>
-
+                                 <button className="cart-product-plus"onClick={() => {setItemQuantity(itemQuantity+1)}}>+</button>
+                                 <div className="count">{itemQuantity}</div>
+                                 <button
+                                 className={`cart-product-minus ${(itemQuantity<=1)  ? ' v-hidden' : 'v-visible'}`}
+                                 onClick={() => setItemQuantity(itemQuantity-1)}>-</button>
                              </div>
                              <div className="product-card__img"><img src={item.gallery[0]} alt="product"></img></div>
                              <button className="product-card__remove" onClick={() => removeFromCart(item)}>X</button>

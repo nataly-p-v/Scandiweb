@@ -253,29 +253,13 @@ a {
     color:white;
     background:black;
 }
-input[type="radio"] {
-    position: absolute;
-    z-index: 1;
-    width: 87%;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    appearance: none;
-    outline:none;
-    margin:0;
-    &:focus {
-        outline:none;
-    }
-    &:hover {
-        cursor:pointer;
-    }
-}
-input[type="radio"]:checked + div {
-    color:white;
-    background:black;
+.v-visible {
 
- }
+}
+
+.v-hidden {
+    visibility: hidden;
+}
  .attributes__item-wrapper {
     position:relative;
  }

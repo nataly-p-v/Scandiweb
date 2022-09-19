@@ -18,7 +18,6 @@ function App () {
     const [selectedOption, setSelectedOption] = useState(null);
     let defaultCategory = !selectedCategoryName ? 'all': selectedCategoryName;
     const [attributeMap, setAttributeMap] = useState(new Map());
-    const [attributeIds, setAttributeIds] = useState([]);
     useEffect(() => {
        setSelectedCategoryName(defaultCategory);
        setIsShowCategory(true);
@@ -104,13 +103,7 @@ function App () {
                      />
                 }
                 {isShowCart &&
-                    <Cart cartItems={cartItems} selectedOption={selectedOption || "$"} attributeMap={attributeMap} attributeIds={attributeIds}
-                       handleIncreaseCart={(count) => {
-                        count++;
-                       }}
-                       handleDecreaseCart={(count) => {
-                         count--;
-                       }}
+                    <Cart cartItems={cartItems} selectedOption={selectedOption || "$"} attributeMap={attributeMap}
                     />
                 }
        </main>
