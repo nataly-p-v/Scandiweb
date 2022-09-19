@@ -18,6 +18,8 @@ function App () {
     const [selectedOption, setSelectedOption] = useState(null);
     let defaultCategory = !selectedCategoryName ? 'all': selectedCategoryName;
     const [attributeMap, setAttributeMap] = useState(new Map());
+    const [attribute, setAttribute] = useState();
+    let [attributeMapArr, setAttributeMapArr] = useState([])
     useEffect(() => {
        setSelectedCategoryName(defaultCategory);
        setIsShowCategory(true);
@@ -89,21 +91,48 @@ function App () {
                    <Product id={selectedProductId} selectedOption={selectedOption || "$"} attributeMap={attributeMap}
                      addToCart={(product) => {
                        cartItems = cartItems.slice();
+                       attributeMapArr = attributeMapArr.slice();
+
                        cartItems.forEach(item=>{
                            if(item.id === product.id) {
                                item.count++;
                            }
                        })
+                       attributeMapArr.push({attribute})
+                      setAttributeMapArr(attributeMapArr)
+                       setAttributeMap(new Map());
+                      console.log(attributeMapArr)
+
                        cartItems.push({...product, count:1})
                        setCartItems(cartItems);
+
                      }}
-                     onSelectAttribute={(attr, value, i) => {
-                        setAttributeMap(attributeMap.set(attr, value))
+                     onSelectAttribute={(attr, value, productId, attributesNumber) => {
+                        console.log(attributesNumber)
+                        let attribute={};
+                        if(attributesNumber>1) {
+                             attribute = {
+                             id: productId,
+                             attributeSet : attributeMap.set(attr, value)
+                            }
+                            setAttribute(prevState => attribute);
+                            console.log(attribute);
+                        } else {
+                             attribute = {
+                             id: productId,
+                             attributeSet : {
+                                attr: attr,
+                                value: value
+                             }
+                            }
+                            setAttribute(prevState => attribute);
+                            console.log(attribute)
+                        }
                      }}
                      />
                 }
                 {isShowCart &&
-                    <Cart cartItems={cartItems} selectedOption={selectedOption || "$"} attributeMap={attributeMap}
+                    <Cart cartItems={cartItems} selectedOption={selectedOption || "$"} attributeMap={attributeMap} attributeMapArr={attributeMapArr}
                     />
                 }
        </main>

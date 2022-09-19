@@ -6,12 +6,7 @@ import Attribute from "./Attribute";
 function Product({id, addToCart, selectedOption, onSelectAttribute, attributeMap}) {
    const [product, setProduct] = useState([]);
    const [mainImg, setMainImg] = useState([]);
-
-   /*const values = ((map)=> {
-    for (const value of map.values()) {
-         console.log(value);
-       }
-   })*/
+   const [attributesNumber, setAttributesNumber] = useState(0);
 
    const { data } = useQuery(LOAD_PRODUCT, {
           variables: {
@@ -21,7 +16,8 @@ function Product({id, addToCart, selectedOption, onSelectAttribute, attributeMap
     useEffect(() => {
         if (data) {
             setProduct(data.product)
-            console.log(data.product)
+             setAttributesNumber(data.product.attributes.length);
+            /*console.log(product.attributes.length)*/
             setMainImg(data.product.gallery[0])
         }
     }, [data]);
@@ -32,7 +28,7 @@ function Product({id, addToCart, selectedOption, onSelectAttribute, attributeMap
                       return <div key={Math.random()} className="attributes__item">
                         <span className="attributes__item-name">{attr.name}</span>
                         <div className="attributes__item-values">
-                            <Attribute attr={attr} onSelectAttribute={onSelectAttribute}/>
+                            <Attribute attr={attr} onSelectAttribute={onSelectAttribute} productId={product.id} attributesNumber={attributesNumber}/>
                         </div>
                       </div>
 

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import CartItem from "./CartItem";
 
-function Cart({cartItems, selectedOption, attributeMap}) {
+function Cart({cartItems, selectedOption, attributeMap, attributeMapArr}) {
       const [selectedAttrId, setSelectedAttrId] = useState(null);
       let [itemQuantity, setItemQuantity] = useState(1);
               useEffect(() => {
               attributeMap.forEach((i) => {
                   setSelectedAttrId(i);
               })
-              console.log(itemQuantity)
+              console.log(attributeMapArr)
               }, []);
         return (
         <div>
@@ -16,7 +16,7 @@ function Cart({cartItems, selectedOption, attributeMap}) {
             <ul className="main-cart">
                 <div className="main-cart__items">
                      {cartItems.length>0 ? cartItems.map((item, i) => (
-                        <CartItem item={item} cartItems={cartItems} selectedOption={selectedOption} attributeMap={attributeMap}/>
+                        <CartItem key={i} item={item} cartItems={cartItems} selectedOption={selectedOption} attributeMap={attributeMap}/>
                      ))
                      : <h1 className="cart-name">0 items added to cart!</h1>
                      }
