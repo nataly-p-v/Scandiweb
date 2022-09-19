@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CartItem from "./CartItem";
+import _ from 'lodash';
 
 function Cart({cartItems, selectedOption, attributeMap, attributeMapArr}) {
       const [selectedAttrId, setSelectedAttrId] = useState(null);
@@ -8,7 +9,21 @@ function Cart({cartItems, selectedOption, attributeMap, attributeMapArr}) {
               attributeMap.forEach((i) => {
                   setSelectedAttrId(i);
               })
+              attributeMapArr.map((item, i, obj) => {
+              //надо проверять не undefined ли obj
+              if(obj[i] == undefined) {
+              return;
+              } else {
+                console.log(obj[i]);
+                console.log(obj[i+1]);
+                let isEqual = _.isEqual(obj[i], obj[i+1]);
+                console.log(isEqual)
+              }
+
+               })
               console.log(attributeMapArr)
+
+
               }, []);
         return (
         <div>
