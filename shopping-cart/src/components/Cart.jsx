@@ -5,22 +5,41 @@ import _ from 'lodash';
 function Cart({cartItems, selectedOption, attributeMap, attributeMapArr}) {
       const [selectedAttrId, setSelectedAttrId] = useState(null);
       let [itemQuantity, setItemQuantity] = useState(1);
+      const [duplicatesIndices , setDuplicatesIndices ] = useState([]);
+      const [result , setResult ] = useState([]);
               useEffect(() => {
               attributeMap.forEach((i) => {
                   setSelectedAttrId(i);
               })
-              attributeMapArr.map((item, i, obj) => {
-              //надо проверять не undefined ли obj
-              if(obj[i] == undefined) {
-              return;
-              } else {
-                console.log(obj[i]);
-                console.log(obj[i+1]);
-                let isEqual = _.isEqual(obj[i], obj[i+1]);
-                console.log(isEqual)
-              }
+              attributeMapArr.forEach((current, index) => {
+                if (duplicatesIndices.includes(index)) return;
+                result.push(current);
+                 for (let comparisonIndex = index + 1; comparisonIndex < attributeMapArr.length; comparisonIndex++) {
+                    const comparison = attributeMapArr[comparisonIndex];
+                    const currentKeys = Object.keys(current);
+                    const comparisonKeys = Object.keys(comparison);
+                    // Проверяем длину массивов
+                    if (currentKeys.length !== comparisonKeys.length) continue;
 
+                    // Проверяем значение ключей
+                    const currentKeysString = currentKeys.sort().join("").toLowerCase();
+                    const comparisonKeysString = comparisonKeys.sort().join("").toLowerCase();
+
+                    if (currentKeysString !== comparisonKeysString) continue;
+                    // Проверяем индексы ключей
+                    let valuesEqual = true;
+                    for (let i = 0; i < currentKeys.length; i++) {
+                        const key = currentKeys[i];
+                        if ( JSON.stringify(current[key]) !== JSON.stringify(comparison[key]) ) {
+                            valuesEqual = false;
+                            break;
+                        }
+                    }
+                    if (valuesEqual) duplicatesIndices.push(comparisonIndex);
+
+                 } // Конец цикла
                })
+              console.log(result) // если я куплю 4 одиинаковых товара тут будет лежать 1 и еще надо записывать количество итераций
               console.log(attributeMapArr)
 
 
