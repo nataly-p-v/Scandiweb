@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import AttributeCart from "./AttributeCart";
 
-function CartItem({item, cartItems, selectedOption, attributeMap}) {
+function CartItem({item, cartItems, selectedOption, attributeMap, filteredAttributes}) {
       const [selectedAttrId, setSelectedAttrId] = useState(null);
       let [itemQuantity, setItemQuantity] = useState(1);
               useEffect(() => {
               attributeMap.forEach((i) => {
                   setSelectedAttrId(i);
               })
-              console.log(itemQuantity)
+              console.log(filteredAttributes)
               }, []);
         return (
         <div>
