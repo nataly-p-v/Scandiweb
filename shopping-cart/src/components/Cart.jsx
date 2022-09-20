@@ -6,14 +6,14 @@ function Cart({cartItems, selectedOption, attributeMap, attributeMapArr}) {
       const [selectedAttrId, setSelectedAttrId] = useState(null);
       let [itemQuantity, setItemQuantity] = useState(1);
       const [duplicatesIndices , setDuplicatesIndices ] = useState([]);
-      const [result , setResult ] = useState([]);
+      const [filteredAttributes , setFilteredAttributes ] = useState([]);
               useEffect(() => {
               attributeMap.forEach((i) => {
                   setSelectedAttrId(i);
               })
               attributeMapArr.forEach((current, index) => {
                 if (duplicatesIndices.includes(index)) return;
-                result.push(current);
+                filteredAttributes.push(current);
                  for (let comparisonIndex = index + 1; comparisonIndex < attributeMapArr.length; comparisonIndex++) {
                     const comparison = attributeMapArr[comparisonIndex];
                     const currentKeys = Object.keys(current);
@@ -39,7 +39,8 @@ function Cart({cartItems, selectedOption, attributeMap, attributeMapArr}) {
 
                  } // Конец цикла
                })
-              console.log(result) // если я куплю 4 одиинаковых товара тут будет лежать 1 и еще надо записывать количество итераций
+               setFilteredAttributes(filteredAttributes)
+              console.log(filteredAttributes.length) // если я куплю 4 одиинаковых товара тут будет лежать 1 и еще надо записывать количество итераций
               console.log(attributeMapArr)
 
 
@@ -50,7 +51,7 @@ function Cart({cartItems, selectedOption, attributeMap, attributeMapArr}) {
             <ul className="main-cart">
                 <div className="main-cart__items">
                      {cartItems.length>0 ? cartItems.map((item, i) => (
-                        <CartItem key={i} item={item} cartItems={cartItems} selectedOption={selectedOption} attributeMap={attributeMap}/>
+                        <CartItem key={i} item={item} cartItems={cartItems} selectedOption={selectedOption} attributeMap={attributeMap} filteredAttributes={filteredAttributes}/>
                      ))
                      : <h1 className="cart-name">0 items added to cart!</h1>
                      }
