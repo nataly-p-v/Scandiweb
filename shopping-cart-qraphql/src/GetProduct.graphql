@@ -1,8 +1,0 @@
-query {
-
-        currencies{
-          label,
-          symbol
-        }
-
-    }
